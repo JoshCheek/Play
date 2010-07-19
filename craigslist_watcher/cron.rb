@@ -8,7 +8,7 @@
 # or to turn all of them off:                           $ ./cron.rb
 #
 # Note that it is not cumulative -- ie each time you run this file, it overwrites the previous values
-
+# Note that you can check that it is doing what you want with $ crontab -l
 
 every 5.minutes do
   ARGV.each do |keyword|
