@@ -2,8 +2,9 @@ The code in these folders is intended for me to keep track of snippets of fun id
 
 **This code is unmaintained.** 
 
-If you do something interesting with it, let me know so I can be happy.
+_If you do something interesting with it, let me know so I can be happy._
 
+---------------------------------------
 
 Copyright (c) 2010 Joshua Cheek
 
