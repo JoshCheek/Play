@@ -1,3 +1,6 @@
+Description
+===========
+
 Trying to get a free computer that I can put linux on and play with stuff
 like deploying code with capistrano, configuring servers with chef. 
 
@@ -6,9 +9,25 @@ a free stuff notice on craigslist for my city, if its title matches
 /comp/i Though, I wrote it such that I can pass it multiple words to
 watch for (though right now can't accept multiple cities).
 
-To turn on:           `$ cron.rb comp`
-To turn off:          `$ cron.rb`
-To see what it did:   `$ crontab -l`
+
+
+Usage
+=====
+
+To turn on:           `$ cron.rb comp`  
+To turn off:          `$ cron.rb`  
+To see what it did:   `$ crontab -l`  
+
+
+
+Dependencies
+============
+
+[whenever](http://rubygems.org/gems/whenever)
+[nokogiri](http://rubygems.org/gems/nokogiri)
+[ruby-growl](http://rubygems.org/gems/ruby-growl)
+
+(note that ruby-growl is Mac only)
 
 ---------------------------------------
 
