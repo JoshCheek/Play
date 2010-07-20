@@ -1,0 +1,25 @@
+# In looking around, trying ti find the right flags (I had 4/5), I found this really good reference
+# http://www.cs.tut.fi/~jkorpela/html/cpre.html
+#
+# This Rakefile just automates the process of compiling all the source files into a single index.html
+# It also understands dependencies like make, so won't regenerate if there is no need
+# pg in index.pg.html stands for "PreGeneration ie this is the file before it is generated"
+
+
+# add index.html to the clobber list. Explanation at
+# http://onestepback.org/index.cgi/Tech/Rake/Tutorial/RakeTutorialRules.red
+require 'rake/clean'
+CLOBBER.include('index.html')
+
+
+# says that index.html is dependant on index.pg.html, text.html, and scripts.js
+# if any of these supdate, and this task is run, then it will execute the gcc incantation to rebuild index.html
+file 'index.html' => %w[index.pg.html text.html scripts.js] do
+  sh "gcc -x c -CC -P  -E -o index.html index.pg.html"
+end
+
+
+# giving this an actual task instead of invoking it as the default, sot hat it shows up in $ rake -T
+desc 'builds index.html from its sources -- this is the default action'
+task :build   => 'index.html'   # "$ rake build"   invokes the index.html file task
+task :default => :build         # "$ rake"         causes the build task to be the default action
