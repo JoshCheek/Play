@@ -23,9 +23,9 @@ To see what it did:   `$ crontab -l`
 Dependencies
 ============
 
-[whenever](http://rubygems.org/gems/whenever)
-[nokogiri](http://rubygems.org/gems/nokogiri)
-[ruby-growl](http://rubygems.org/gems/ruby-growl)
+* [whenever](http://rubygems.org/gems/whenever)
+* [nokogiri](http://rubygems.org/gems/nokogiri)
+* [ruby-growl](http://rubygems.org/gems/ruby-growl)
 
 (note that ruby-growl is Mac only)
 
