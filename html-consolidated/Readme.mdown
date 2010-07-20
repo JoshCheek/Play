@@ -1,3 +1,6 @@
+Description
+===========
+
 This code shows how you might go about using the gcc preprocessor to compile a
 single html file out of several input files. This would enable you to have the
 benefits of abstractions like code separation (rather than working on css,
@@ -5,11 +8,25 @@ html, and javascript all in the same source file that ends up being thousands
 of lines long) while also having the portability of a single html file, if that
 was something that was useful to you.
 
+
+
+Usage
+=====
+
 To see how it works:
 
     $ rake              # or $ rake build
     $ open index.html   # open the file in the browser
     $ rake clobber      # clobber the generated file
+
+
+
+Dependencies
+============
+
+[rake](http://rubygems.org/gems/rake) 
+
+
 
 ---------------------------------------
 
