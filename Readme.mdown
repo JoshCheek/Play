@@ -1,5 +1,7 @@
 The code in these folders is intended for me to keep track of snippets of fun ideas I had, or code experiments I wanted to try. I got the idea from [Wesley Beary](http://github.com/geemus) at Ruby Midwest 2010. He called his prototypes, I call mine play, because I think "prototype" implies more seriousness than mine deserve.
 
+---------------------------------------
+
 **This code is unmaintained.** 
 
 _If you do something interesting with it, let me know so I can be happy._

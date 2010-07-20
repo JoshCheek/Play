@@ -1,15 +1,14 @@
-This code shows how you might go about using the gcc preprocessor to compile a
-single html file out of several input files. This would enable you to have the
-benefits of abstractions like code separation (rather than working on css,
-html, and javascript all in the same source file that ends up being thousands
-of lines long) while also having the portability of a single html file, if that
-was something that was useful to you.
+Trying to get a free computer that I can put linux on and play with stuff
+like deploying code with capistrano, configuring servers with chef. 
 
-To see how it works:
+This code should notify me with growl within 5 minutes of someone placing
+a free stuff notice on craigslist for my city, if its title matches
+/comp/i Though, I wrote it such that I can pass it multiple words to
+watch for (though right now can't accept multiple cities).
 
-    $ rake              # or $ rake build
-    $ open index.html   # open the file in the browser
-    $ rake clobber      # clobber the generated file
+To turn on:           `$ cron.rb comp`
+To turn off:          `$ cron.rb`
+To see what it did:   `$ crontab -l`
 
 ---------------------------------------
 
