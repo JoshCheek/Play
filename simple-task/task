@@ -1,0 +1,71 @@
+#! /usr/bin/env ruby
+require 'yaml'
+YAML_FILE = File.dirname(__FILE__) + '/tasks.yml'  
+
+module Task
+  
+  def all
+    reset unless File.exist? YAML_FILE
+    @tasks ||= YAML.load File.read(YAML_FILE)
+  end
+
+  def reset
+    @tasks = []
+    save
+  end
+
+  def save
+    File.open(YAML_FILE,'w') { |file| file.print YAML.dump(all) }
+  end
+
+  def add( task , position=nil )
+    if position.nil?
+      all << task
+    else
+      all.insert position.to_i , task
+    end
+    save
+  end
+
+  def swap( index1 , index2 )
+    index1 , index2 = index1.to_i , index2.to_i
+    all[index1] , all[index2] = all[index2] , all[index1]
+    save
+  end
+
+  def delete(index)
+    task = all.delete_at index.to_i
+    save
+  end
+
+  def count
+    all.size
+  end
+
+  def print
+    all.each_with_index { |task,index| printf "%#{count.to_s.size}d  -  #{task}\n" , index }
+  end
+  
+end
+include Task
+
+ 
+case ARGV.shift
+when nil , 'show' , 'list' , 'all' , 'display'
+  print
+when 'new' , 'add' , 'create' , 'touch'
+  location = if ARGV.first =~ /\A\d+\Z/ then ARGV.shift.to_i else nil end
+  add ARGV.join(' ') , location
+  print
+when 'mv' , 'move' , 'switch' , 'swap' , 'prioritize' , 'reprioritize' , 'pr' , 'promote' , 'emphasize'
+  ARGV << 0 if ARGV.size == 1
+  swap *ARGV
+  print
+when 'del' , 'delete' , 'complte' , 'finish' , 'done' , 'rm' , 'destroy' , 'mark'
+  delete ARGV.shift
+  print
+when 'cl' , 'clear' , 'clean' , 'wipe' , 'erase' , 'delete-all' , 'delete_all' , 'destroy-all' , 'destroy_all' , 'reset'
+  reset
+else
+  puts File.read(__FILE__)[/^case.*\Z/m]
+end

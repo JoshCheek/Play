@@ -1,0 +1,70 @@
+Description
+===========
+
+A very very simple task manager. I am hoping to turn this into a more 
+comprehensive tool, but for now it just keeps track of a list of tasks.
+Note that it will create a .yml file wherever you store it, which is how
+it will propagate the tasks.
+
+Usage
+=====
+
+These examples assume you have this script set up to run as `$ task`
+
+There are 5 ways to use this script: 
+
+  * List out the tasks with `$ task` or `$ task [cmd]` where
+    cmd is 'show' , 'list' , 'all' , or 'display'
+  * Create a new task with `$ task [cmd] [position] [task]` where
+    cmd is 'new' , 'add' , 'create' , or 'touch'
+    
+    The position will default to the last element.
+    Examples:
+      
+      * `$ task add Finish assignment for Friday`
+      * `$ task create 0 Pick up milk`
+  * Reorder the task list with `$ task [cmd] [from index] [to index]`
+    where from command is 'mv' , 'move' , 'switch' , 'swap' , 
+    'prioritize' , 'reprioritize' , 'pr' , 'promote' , or 'emphasize'
+    
+    The to index will default to zero, so that prioritizing any given
+    task will cause it to become the first task in the list if a destination
+    is not specified.
+  * Delete a task with `$ task [cmd] [index]` where cmd is 'del' , 'delete' , 
+    'complte' , 'finish' , 'done' , 'rm' , 'destroy' , or 'mark'
+    Example: `$ task del 0` will mark off the task in index 0
+  * Clear the task list with `$ task [cmd]` where cmd is 'cl' , 'clear' ,
+    'clean' , 'wipe' , 'erase' , 'delete-all' , 'delete_all' , 'destroy-all' ,
+    'destroy_all' , or 'reset'
+  * Get help with `$ task [cmd]` where cmd is anything not in the above list
+    (ie `$ taskhelp` will work) The help command simply prints out the case 
+    statement that determines how to handle the input
+  
+  
+---------------------------------------
+
+**This code is unmaintained.** 
+
+_If you do something interesting with it, let me know so I can be happy._
+
+---------------------------------------
+
+Copyright (c) 2010 Joshua Cheek
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
