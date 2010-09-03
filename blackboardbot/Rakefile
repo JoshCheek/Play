@@ -1,0 +1,110 @@
+require 'environment'
+require 'rake'
+
+desc 'Run the bot: pull all new posts into the database'
+task :run do
+  MessageBoard.save_all_new_posts
+end
+
+namespace :init do
+  
+  def dependencies
+    { 'sqlite3-ruby'  => {  :version      =>  '1.2.4' ,  
+                            :description  =>  'This module allows Ruby programs to interface with the SQLite3 database engine (http://www.sqlite.org). You must have the SQLite engine installed in order to build this module. Note that this module is NOT compatible with SQLite 2.x.' ,
+                         },
+
+      'whenever'      => {  :version      =>  '0.4.1' ,
+                            :description  =>  'Clean ruby syntax for defining and deploying messy cron jobs.' 
+                         },
+
+      'mechanize'     => { :version       =>  '0.9.3' ,
+                           :description   =>  'The Mechanize library is used for automating interaction with websites. Mechanize automatically stores and sends cookies, follows redirects, can follow links, and submit forms. Form fields can be populated and submitted. Mechanize also keeps track of the sites that you have visited as a history.' ,
+                           :note          =>  'Mechanize parses html with Nokogiri, which uses libxml, which may need to be built from source. If so, see readme for a link, then reinstall gems.'
+                         },
+
+      'activerecord'  => { :version       =>  '2.3.2' ,
+                           :description   =>  'Implements the ActiveRecord pattern (Fowler, PoEAA) for ORM. It ties database tables and classes together for business objects, like Customer or Subscription, that can find, save, and destroy themselves without resorting to manual SQL.'
+                         },
+
+      'pony'          => { :version       =>  '0.6' ,
+                           :description   =>  "Send email in one command: Pony.mail(:to => 'someone@example.com', :body => 'hello')" 
+                         },
+    }
+  end
+  
+  # got this idea from the Sinatra screencast from Peepcode
+  desc "Install gems that this app depends on."
+  task :install_gems do
+    dependencies.each do |gem_name,data|
+      puts '','',"#{gem_name} #{data[:version]}"
+      puts data[:description]
+      puts '' , data[:note] , '' if data[:note]
+      system "sudo gem install #{gem_name} --version #{data[:version]}"
+    end
+  end
+
+  
+  
+end
+
+namespace :cron do
+
+  def run_whenever( minutes = 0 )
+    system "whenever --update-crontab blackboardbot    --load-file cron.rb    --set minutes=#{minutes}"
+  end
+
+  def run_crontab
+    system 'crontab -l'
+  end
+  
+  desc 'Displays current crontab'
+  task :display do
+    run_crontab
+  end
+  
+  desc 'Runs blackboardbot (every minute by default) examples: "rake cron:on" or "rake cron:on minutes=5"'
+  task :on do
+    run_whenever( ENV['minutes'] || 1 )
+    run_crontab
+  end
+
+  desc 'Never run blackboardbot'
+  task :off do
+    run_whenever(0)
+    run_crontab
+  end
+
+end
+
+
+namespace :email do
+
+  def update_message_setting( should_enable = true )
+    Post.send_message_after_create! should_enable
+  end
+  
+  desc 'Enable email/text messaging (send message each time Post is created)'
+  task :on do
+    update_message_setting
+  end
+
+  desc 'Disable email/text messaging (do not send message each time Post is created)'
+  task :off do
+    update_message_setting false
+  end
+
+end
+
+
+namespace :db do
+  
+  desc 'Delete then recreate database (does not reload content)'
+  task :reset do
+    File.delete Settings.db.database rescue nil
+    require Settings.db.create_file
+  end
+  
+  desc 'resets the database, then reloads all content from blackboard'
+  task :reload => [ :reset , :run ]
+  
+end
