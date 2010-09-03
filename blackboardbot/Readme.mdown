@@ -1,0 +1,78 @@
+Description
+===========
+
+This probably doesn't work any more, but about a year ago I used it to log onto my school's website ([blackboard](http://www.blackboard.com)), find new forum posts, and text them to me (it has no API -- or if it does, it didn't back then). I had it on github, but after Chris Wanstrath decried the state of open source code on github, at Ruby Midwest, I felt obliged to take it down. Now that I have my play dir, I feel that it can be put here. 
+
+Setup
+=====
+
+(The robot probably won't work in Windows.)
+
+For the most part, d/l Ruby, d/l the gems, figure out the settings, and then interact via rake tasks
+
+The gems are listed below in the license, though some of them have dependencies, ie Mechanize uses Nokogiri, which has to be built from source. On OSX 10.5.6, libxml2 needed to be updated for nokogiri, these are the instructions I used to do it http://martinisoftware.com/2009/07/31/nokogiri-on-leopard.html
+
+The rest of the gems should go fairly easily *cross your fingers*
+
+The settings are located in settings.yaml, and are a bit more complicated, I figured them out by downloading firebug, and observing what was submitted to the server when I log onto blackboard. There is also an included example_settings.yaml you can use to see what mine looks like (with sensitive values scrubbed).
+
+If you don't have a gmail account, go make one (I didn't use my real one, either), you will need it for the settings.
+
+To figure out how to get it to text you, it is generally your phone number at your carrier, ie 3161234567@vtext.com , [here](http://en.wikipedia.org/wiki/List_of_carriers_providing_SMS_transit) is a list of carriers You can test it out by simply sending an email to that address, and seeing if you receive it in a text message.
+
+
+Usage
+=====
+
+After it is all setup (see below), you can do pretty much everything from the Rakefile. To see what you have available, navigate to that directory and type
+    $ rake -T
+    rake cron:display  # Displays current crontab
+    rake cron:off      # Never run blackboardbot
+    rake cron:on       # Runs blackboardbot (every minute by default) examples: "rake cron:on" or "rake cron:on minutes=5"
+    rake db:reload     # resets the database, then reloads all content from blackboard
+    rake db:reset      # Delete then recreate database (does not reload content)
+    rake email:off     # Disable email/text messaging (do not send message each time Post is created)
+    rake email:on      # Enable email/text messaging (send message each time Post is created)
+    rake run           # Run the bot: pull all new posts into the database
+
+Then when you see one you like, try it out: `$ rake run`
+
+
+Dependencies
+============
+
+* [sqlite3](http://rubygems.org/gems/sqlite3)
+* [mechanize](http://rubygems.org/gems/mechanize)
+* [activerecord](http://rubygems.org/gems/activerecord)
+* [pony](http://rubygems.org/gems/pony)
+
+
+
+
+---------------------------------------
+
+**This code is unmaintained.** 
+
+_If you do something interesting with it, let me know so I can be happy._
+
+---------------------------------------
+
+Copyright (c) 2010 Joshua Cheek
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
