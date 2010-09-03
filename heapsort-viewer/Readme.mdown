@@ -1,12 +1,30 @@
 Description
 ===========
 
-Trying to visualize a heapsort, after seeing [http://www.youtube.com/watch?v=iXAjiDQbPSw](http://www.youtube.com/watch?v=iXAjiDQbPSw)
+Trying to visualize a sorting algorithm, after seeing [http://www.youtube.com/watch?v=iXAjiDQbPSw](http://www.youtube.com/watch?v=iXAjiDQbPSw)
+
+Initially this was just heap sort, but I got enchanted by the idea of doing merge sort too, so I've added that. I'm really pleased with the merge sort, the heap sort is just okay.
+
+ImageMagick (or RMagick) has been a nightmare, though. I could write all the images in a few seconds, but it randomly freezes when trying to write the image to the file, some infinite loop somewhere I think. I tried to use threads with [timeout](http://ruby-doc.org/stdlib/libdoc/timeout/rdoc/files/timeout_rb.html), but it just froze. So I wrote one script to generate the data, one to read it in and delegate to another that will actually draw the images, that way when they freeze up I can kill them without losing all the rest of the work. Unfortunately that makes it take a horribly long time, because shelling out is apparently horribly horribly slow. With 20+ freezes each time I ran it, killing them became such a hassle that I wrote a script to handle that too. I spent most of my time trying to work around that issue, actually. Writing the sorts was actually not that difficult, though I did have to think about merge sort for a while to figure out how to display it.
+
+Thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me.
 
 Usage
 =====
 
+    $ ./mergesort.rb
+    $ ./to_images.rb
 
+Now open a new tab, and when it freezes up `$ ./kill.rb`
+
+After it finishes, re run `$ ./to_images.rb` to generate the ones you had to kill.
+
+    $ cd results
+    $ open *
+
+If you're on OSX, this will open it in preview, which will then let you cycle through using left / right keys, which is very helpful for slowing down and iterating over specific images to see what goes where. I was able to use it to explain to my parents how both sorts work, and as far as I know, neither of them have ever done any programming.
+
+I haven't yet figured out how to turn them into a video. Working on that -.-
 
 Dependencies
 ============
