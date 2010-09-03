@@ -1,17 +1,36 @@
 #!/usr/bin/env ruby
+
+def draw( values , colours=Hash.new )
+  $results ||= begin
+    at_exit do
+      File.open "positions" , "w" do |file|
+        require 'yaml'
+        file.puts YAML::dump($results)
+      end
+    end
+    Array.new
+  end
+  $results << colours.merge(:values => values)
+end
+
+
 class HeapSort
   
   def initialize(ary,&block)
     block ||= lambda { |a,b| a.send :'<=>' , b }
-    @values = ary
-    @size = ary.size
+    @values  = ary
+    @size    = ary.size
     @compare = block
   end
   
   def sort!
     heapify
     @size.times do
-      swap 0 , @size-=1
+      reset_reds_blues
+      @size -= 1
+      @blues = get_bubble_path( 0 , values[@size] )
+      @reds  = [0]
+      swap 0 , @size
       bubble_down
     end
     values
@@ -23,17 +42,44 @@ class HeapSort
 
 private
 
-  attr_reader :values
+  attr_reader :values , :reds , :blues
+  
+  def bubble_down(index=0)
+    return if valid_parent?(index)
+    @blues = [index] + get_bubble_path(index)
+    get_bubble_path(index).each do |new_index|
+      @reds = [new_index]
+      @blues -= @reds
+      swap index , new_index
+      @blues += @reds
+      index = new_index
+    end
+    reset_reds_blues
+  end
+  
+  
+  def draw
+    super values.dup , :whites => values-reds-blues , :reds => reds.dup , :blues => blues.dup
+  end
+
+  def reset_reds_blues
+    @reds  = Array.new
+    @blues = Array.new
+  end
 
   def heapify
     (@size/2).downto(0) { |i| bubble_down i }
   end
-  
-  def bubble_down(index=0)
-    return if valid_parent?(index)
-    new_index = greatest_child_index(index)
-    swap index , new_index
-    bubble_down new_index
+    
+  def get_bubble_path(index,crnt_value=nil)
+    return Array.new if valid_parent?(index,crnt_value)
+    path = Array.new
+    crnt_value ||= values[index]
+    while !valid_parent?(index,crnt_value)
+      path << greatest_child_index(index)   
+      index = path.last
+    end
+    path
   end
   
   def greatest_child_index(index)
@@ -47,23 +93,25 @@ private
     end
   end
   
-  def valid_parent?(index)
+  def valid_parent?(index,value=nil)
     case num_children(index)
     when 0
       true
     when 1
-      geq_left?(index)
+      geq_left?(index,value)
     when 2
-      geq_left?(index) && geq_right?(index)
+      geq_left?(index,value) && geq_right?(index,value)
     end
   end
   
-  def geq_left?(index)
-    @compare[ values[index] , left_child(index) ] >= 0
+  def geq_left?(index,value=nil)
+    value ||= values[index]
+    @compare[ value , left_child(index) ] >= 0
   end
   
-  def geq_right?(index)
-    @compare[ values[index] , right_child(index) ] >= 0
+  def geq_right?(index,value=nil)
+    value ||= values[index]
+    @compare[ value , right_child(index) ] >= 0
   end
   
   def left_index(index)
@@ -90,6 +138,7 @@ private
   
   def swap(i1,i2)
     values[i1] , values[i2] = values[i2] , values[i1]
+    draw
   end
   
   def valid_index?(index)
@@ -110,34 +159,8 @@ end
 
 
 
-$dirname = "./results#{Dir['results*'].select(&File.method(:directory?)).size}"
-FileUtils.mkdir $dirname
-VALUES      = 100
-STROKE      = 2
-HEIGHT      = VALUES
-WIDTH       = VALUES * STROKE
-$imagecount = 0
-require 'rubygems'
-require 'rmagick'
-def to_image(ary)
-  canvas = Magick::ImageList.new
-  canvas.new_image WIDTH , HEIGHT do
-    self.background_color = 'black'
-  end
-  lines = Magick::Draw.new
-  lines.stroke = 'white'
-  lines.stroke_width = STROKE
-  ary.each_with_index do |value,index|
-    lines.line index*STROKE , HEIGHT , index*STROKE , HEIGHT-value
-  end
-  lines.draw canvas
-  canvas.write File.join($dirname , "#{$imagecount}.png" )
-  $imagecount += 1
-end
 
 
-ary = (0...100).to_a.shuffle
+ary = (0...200).to_a.shuffle
 puts "Before sort: #{ary.inspect}"
-puts
-puts "After sort: #{ary.heapsort.inspect}"
-to_image ary
+puts "After sort: #{ary.heapsort!.inspect}"
