@@ -1,3 +1,4 @@
 craigslist-watcher/*.yml
 simple-task/*.yml
-heapsort-viewer/results*
+sort-viewer/results
+sort-viewer/positions
