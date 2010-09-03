@@ -2,3 +2,4 @@ craigslist-watcher/*.yml
 simple-task/*.yml
 sort-viewer/results
 sort-viewer/positions
+blackboardbot/settings.yaml
