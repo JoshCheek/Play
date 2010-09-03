@@ -1,0 +1,26 @@
+--- 
+:email: 
+  :enable: true
+  :pass: secret
+  :to: 1234567890@vtext.com
+  :host: smtp.gmail.com
+  :tls: true
+  :port: "587"
+  :auth: :plain
+  :from: your_address@gmail.com
+:db: 
+  :boards: 
+  - :name: Artificial Intelligence
+    :url: https://blackboard.wichita.edu/webapps/discussionboard/do/conference?action=list_forums&course_id=_19833_1&nav=discussion_board_entry
+  :username: root
+  :adapter: sqlite3
+  :database: blackboardbot.sqlite3
+  :host: localhost
+  :password: ""
+  :create_file: create_database
+:blackboard: 
+  :user_id: a123b456
+  :encoded_pw: adk215kl1JK35kl
+  :encoded_pw_unicode: ajaK23zjskjslgdk1232
+  :logout_url: https://blackboard.wichita.edu/webapps/login?action=logout
+  :login_url: https://blackboard.wichita.edu/webapps/login/
