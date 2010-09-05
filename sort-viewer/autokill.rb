@@ -28,7 +28,7 @@ candidates = %x[ps -u #{USERNAME}].split("\n").map { |line| line.split }.select 
 if candidates.size != 1
   puts "Expected one thread to kill, but got these:"
   require 'pp'
-  pp to_kill
+  pp candidates
   exit 1
 else
   PID = candidates.first[1]   # extract the PID
