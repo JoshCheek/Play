@@ -1,11 +1,17 @@
+Disclaimer
+==========
+
+These are not good general purpose sort algorithms, they have been modified to work well with displaying images (some are implemented incorrectly here, in order to depict in am image something that doesn't actually translate to a linear series of lines) Also, I can't think of any reason you wouldn't use the built in sort functions.
+
 Description
 ===========
 
-Trying to visualize a sorting algorithm, after seeing [http://www.youtube.com/watch?v=iXAjiDQbPSw](http://www.youtube.com/watch?v=iXAjiDQbPSw)
+394 394 394 394 394 394 394 394 394 394 394 394 394 394 394 394 394 394 394 394 394 
+6 hours 6 hours 6 hours 6 hours 6 hours 6 hours 6 hours 6 hours 6 hours 6 hours 6 hours 
 
-Initially this was just heap sort, but I got enchanted by the idea of doing merge sort too, so I've added that. I'm really pleased with the merge sort, the heap sort is just okay.
+After seeing [this youtube video](http://www.youtube.com/watch?v=iXAjiDQbPSw) I realized that I had most of the knowledge necessary to do that myself. I enjoy small projects like this, so I sat down to see if I could do it with a heap sort. But I quickly became enchanted by the idea of doing merge sort too, so I added that (I think the merge sort came out the best).  By then, I had it generalized enough that adding a new sort was just a matter of modifying a small amount of code, so I added bubble sort, and then insertion sort.
 
-ImageMagick (or RMagick) has been a nightmare, though. I could write all the images in a few seconds, but it randomly freezes when trying to write the image to the file, some infinite loop somewhere I think. I tried to use threads with [timeout](http://ruby-doc.org/stdlib/libdoc/timeout/rdoc/files/timeout_rb.html), but it just froze. So I wrote one script to generate the data, one to read it in and delegate to another that will actually draw the images, that way when they freeze up I can kill them without losing all the rest of the work. Unfortunately that makes it take a horribly long time, because shelling out is apparently horribly horribly slow. With 20+ freezes each time I ran it, killing them became such a hassle that I wrote a script to handle that too. I spent most of my time trying to work around that issue, actually. Writing the sorts was actually not that difficult, though I did have to think about merge sort for a while to figure out how to display it (thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me).
+To turn the array of integers that is being sorted into a graphic, I used ImageMagic. Unfortunately, it has been a nightmare. I could write all the images in a few seconds, but it randomly freezes when trying to write the image to the file. I tried to use threads with [timeout](http://ruby-doc.org/stdlib/libdoc/timeout/rdoc/files/timeout_rb.html), but it just froze. So I wrote one script to generate the data, one to read it in and delegate to another that will actually draw the images, that way when they freeze up I can kill them without losing all the rest of the work. Unfortunately that makes it take a horribly long time, because shelling out is apparently the slowest thing in the universe. Generating the bubblesort took ~6 hours, had ~20k images, and I ended up having to kill it ~400 times. Killing them became such a hassle that I wrote a script to handle that too. I spent most of my time trying to work around ImageMagick, actually. Writing the sorts was really not that difficult (I love you, Ruby), though I did have to think about merge sort for a while to figure out how to display it (thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me).
 
 Usage
 =====
@@ -13,24 +19,31 @@ Usage
     $ ./mergesort.rb
     $ ./to_images.rb
 
-Now open a new tab, and when it freezes up `$ ./kill.rb`
+Now, if yours freezes, open a new tab, and when it freezes up `$ ./autokill.rb` (note: this script may require tweaking, it's based on parsing shell output from the ps command).
 
-After it finishes, re run `$ ./to_images.rb` to generate the ones you had to kill.
+After it finishes, re run `$ ./to_images.rb` to generate the ones you had to kill. (note that they can freeze here too, so you may have to repeat this process) Then, to to view them open the images in whatever viewer you like. If you are on OSX, this is a very nice way to cycle through and analyze the output in Preview.
 
     $ cd results
     $ open *
 
-If you're on OSX, this will open it in preview, which will then let you cycle through using left / right keys, which is very helpful for slowing down and iterating over specific images to see what goes where. I was able to use it to explain to my parents how both sorts work, and as far as I know, neither of them have ever done any programming.
+I was able to use it to explain to my parents how both sorts work, and as far as I know, neither of them have ever done any programming.
 
-I haven't yet figured out how to turn them into a video. Working on that -.-
+To then turn them into videos, I used ffmpeg, with the following incantations
+
+    $ ffmpeg -r 8  -f image2 -i ./results_mergesort/%05d.gif     -b 600k ./mergesort.mp4
+    $ ffmpeg -r 8  -f image2 -i ./results_heapsort/%05d.gif      -b 600k ./heapsort.mp4
+    $ ffmpeg -r 96 -f image2 -i ./results_bubblesort/%05d.gif    -b 600k ./bubblesort.mp4
+    $ ffmpeg -r 96 -f image2 -i ./results_insertionsort/%05d.gif -b 600k ./insertionsort.mp4
+
 
 Dependencies
 ============
 
 * [ImageMagick](http://www.imagemagick.org/script/index.php)
 * [rmagick (2.13.1)](http://rubygems.org/gems/rmagick)
+* [ffmpeg](http://www.ffmpeg.org/)
 
-Imagemagick absolutely sucks to install. However, on Snow Leopard, it worked correctly for me the first time using macports.
+Imagemagick absolutely sucks to install. However, on Snow Leopard, it worked correctly for me the first time using macports. Of course, it freezes randomly, and occasionally mismanages its memory (not a segfault, but 'incorrect checksum for freed object - object was probably modified after being freed'), so who knows if its actually installed correctly. I've tried to install it on three computers over my life as a developer, and it has either not installed, or installed with bugs on all three of them.
 
 
 
