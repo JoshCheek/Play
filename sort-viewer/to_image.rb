@@ -41,4 +41,6 @@ add_lines[ 'white' , image[:whites]  ]
 add_lines[ 'red'   , image[:reds]    ]
 add_lines[ 'blue'  , image[:blues]   ]
 
+canvas.set_channel_depth(Magick::AllChannels,8)
+canvas.colorspace = Magick::RGBColorspace
 canvas.write filename
