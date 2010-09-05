@@ -4,8 +4,7 @@ def draw( values , colours=Hash.new )
   $results ||= begin
     at_exit do
       File.open "positions" , "w" do |file|
-        require 'yaml'
-        file.puts YAML::dump($results)
+        file.write Marshal.dump($results)
       end
     end
     Array.new
