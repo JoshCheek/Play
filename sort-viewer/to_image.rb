@@ -37,9 +37,9 @@ add_lines = lambda do |colour,to_add|
   lines.draw canvas unless to_add.empty?
 end
 
-add_lines[ 'white' , image[:whites]  ]
-add_lines[ 'red'   , image[:reds]    ]
-add_lines[ 'blue'  , image[:blues]   ]
+image[:colors].each do |color,indexes|
+  add_lines[ color.to_s , indexes ]
+end
 
 canvas.set_channel_depth(Magick::AllChannels,8)
 canvas.colorspace = Magick::RGBColorspace
