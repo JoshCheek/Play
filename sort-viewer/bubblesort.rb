@@ -78,7 +78,11 @@ class Array
 end
 
 
+unless ARGV.size == 1 && ARGV.first =~ /\A[1-9][0-9]*\Z/
+  puts "Usage: $ #{$0} [positive quantity of numbers to sort]"
+  exit 1
+end
 
-ary = (0...15).to_a.shuffle
+ary = (0...ARGV.first.to_i).to_a.shuffle
 puts "Before sort: #{ary.inspect}"
 puts "After sort: #{ary.bubblesort!.inspect}"
