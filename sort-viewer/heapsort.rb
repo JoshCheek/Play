@@ -3,6 +3,7 @@
 def draw( values , colours=Hash.new )
   $results ||= begin
     at_exit do
+      puts "NUMBER OF IMAGES: #{$results.size}"
       File.open "positions" , "w" do |file|
         file.write Marshal.dump($results)
       end
@@ -58,7 +59,7 @@ private
   
   
   def draw
-    super values.dup , :whites => values-reds-blues , :reds => reds.dup , :blues => blues.dup
+    super values.dup , :colors  => { :white => values-reds-blues , :red => reds.dup , :blue => blues.dup }
   end
 
   def reset_reds_blues
@@ -160,6 +161,6 @@ end
 
 
 
-ary = (0...200).to_a.shuffle
+ary = (0...15).to_a.shuffle
 puts "Before sort: #{ary.inspect}"
 puts "After sort: #{ary.heapsort!.inspect}"

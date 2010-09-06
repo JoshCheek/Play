@@ -57,9 +57,9 @@ private
 
   def draw( all_white = false )
     if all_white
-      super values.dup , :whites => values.dup
+      super values.dup , :colors => { :white => values.dup }
     else
-      super values.dup , :reds => @reds.dup , :blues => @blues.dup , :whites => (0...values.size).to_a-@reds-@blues
+      super values.dup , :colors => { :red => @reds.dup , :blue => @blues.dup , :white => (0...values.size).to_a-@reds-@blues }
     end
   end
 
@@ -80,6 +80,6 @@ end
 
 
 
-ary = (0...200).to_a.shuffle
+ary = (0...20).to_a.shuffle
 puts "Before sort: #{ary.inspect}"
 puts "After sort: #{ary.bubblesort.inspect}"
