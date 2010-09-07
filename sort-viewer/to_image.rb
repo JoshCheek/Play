@@ -37,11 +37,13 @@ add_lines = lambda do |colour,to_add,location|
   lines.draw canvas unless to_add.empty?
 end
 
+image[:colors] ||= Array.new
 image[:colors].each do |color,indexes|
   add_lines[ color.to_s , indexes , :foreground ]
 end
 
-image[:background_colors] do |color,indexes|
+image[:background_colors] ||= Array.new
+image[:background_colors].each do |color,indexes|
   add_lines[ color.to_s , indexes , :background ]  
 end
 
