@@ -2,4 +2,7 @@ craigslist-watcher/*.yml
 simple-task/*.yml
 sort-viewer/results
 sort-viewer/positions
+sort-viewer/*.mp4
 blackboardbot/settings.yaml
+sort-efficiency/results/*.psd
+sort-efficiency/*.out

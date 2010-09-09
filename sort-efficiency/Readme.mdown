@@ -1,0 +1,81 @@
+Description
+===========
+
+A friend asked me why insertion sort was faster than merge sort for small arrays. I [Wikipedia'd](http://en.wikipedia.org/wiki/Divide-and-conquer_algorithm#Choosing_the_base_cases) it, and it looks like there is simply higher overhead for the merge sort, and n hasn't gotten large enough for the time complexity to overcome this. They [also talk about](http://en.wikipedia.org/wiki/Insertion_sort#Comparisons_to_other_sorting_algorithms) how big you have to get before the merge sort overcomes this. Their conclusion was 8 to 20 elements.
+
+I decided I wanted to compare the run times of the sort algorithms, so I coded an insertion sort and merge sort, then set them up to be timed against each other. My results are a lot higher, needing around 100-110 elements before it starts to be faster to merge sort. I don't know if that is because of inefficiencies in how I wrote my sort, or if it is because gcc has done fancy optimizations and changed the code in ways that I'm not aware of.
+
+Still, it was fun. Here is a graph showing the results
+
+Add graph here
+
+
+Usage
+=====
+
+To remove the generated files
+
+    $ rake clobber
+
+To build either sort
+
+    $ rake merge.out
+    $ rake insertion.out
+
+To run either sort
+
+    $ rake merge
+    $ rake insertion
+
+To run them both 
+
+    $ rake time
+
+To run them both with a range of times
+
+    $ rake time-many
+
+There are three variables you can change:
+
+* **arysize** defaults to 5, and is the size of the arrays to be sorted 
+  Example use: `$ rake time arysize=150`
+* **times** defaults to 1,000,000 and is the number of arrays to sort (number of times to repeat the sort)
+  Example use: `$ rake insertion times=100`
+* **testsize** defaults to 10 and is the upper bound on the range tested when running time-many
+  Example use: `$ rake time-many testsize=350`
+
+
+Dependencies
+============
+
+* [hitimes](http://rubygems.org/gems/hitimes) used to time the sorts
+* [rake](http://rubygems.org/gems/rake) to manage file dependencies and cli
+
+
+---------------------------------------
+
+**This code is unmaintained.** 
+
+_If you do something interesting with it, let me know so I can be happy._
+
+---------------------------------------
+
+Copyright (c) 2010 Joshua Cheek
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.

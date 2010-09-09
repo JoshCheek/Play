@@ -3,9 +3,9 @@
 def draw( values , colours=Hash.new )
   $results ||= begin
     at_exit do
+      puts "NUMBER OF IMAGES: #{$results.size}"
       File.open "positions" , "w" do |file|
-        require 'yaml'
-        file.puts YAML::dump($results)
+        file.write Marshal.dump($results)
       end
     end
     Array.new
@@ -51,9 +51,9 @@ private
 
   def draw( all_white = false )
     if all_white
-      super values.dup , :whites => values.dup
+      super values.dup , :colors => { :white => values.dup }
     else
-      super values.dup , :reds => @initial_reds + @always_reds , :blues => @initial_blues + @always_blues , :whites => @whites
+      super values.dup , :colors => { :red => @initial_reds + @always_reds , :blue => @initial_blues + @always_blues , :white => @whites }
     end
   end
 
@@ -99,6 +99,11 @@ end
 
 
 
-ary = (0...200).to_a.shuffle
+unless ARGV.size == 1 && ARGV.first =~ /\A[1-9][0-9]*\Z/
+  puts "Usage: $ #{$0} [positive quantity of numbers to sort]"
+  exit 1
+end
+
+ary = (0...ARGV.first.to_i).to_a.shuffle
 puts "Before sort: #{ary.inspect}"
 puts "After sort: #{ary.mergesort!.inspect}"

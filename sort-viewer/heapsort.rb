@@ -3,9 +3,9 @@
 def draw( values , colours=Hash.new )
   $results ||= begin
     at_exit do
+      puts "NUMBER OF IMAGES: #{$results.size}"
       File.open "positions" , "w" do |file|
-        require 'yaml'
-        file.puts YAML::dump($results)
+        file.write Marshal.dump($results)
       end
     end
     Array.new
@@ -33,6 +33,8 @@ class HeapSort
       swap 0 , @size
       bubble_down
     end
+    @reds = @blues = []
+    draw
     values
   end
   
@@ -57,9 +59,16 @@ private
     reset_reds_blues
   end
   
-  
+  # red is the current element
+  # blue is the path that red will traverse
   def draw
-    super values.dup , :whites => values-reds-blues , :reds => reds.dup , :blues => blues.dup
+    green     = :'#33CC33'
+    darkred   = :'#660000'
+    darkblue  = :'#002C85'
+    blue      = :'#0055FF'
+    super values.dup , 
+          :colors             => { :white => values-reds-blues , :red => reds.dup , blue => blues.dup } ,
+          :background_colors  => { darkred => reds.dup , darkblue => blues.dup }
   end
 
   def reset_reds_blues
@@ -161,6 +170,11 @@ end
 
 
 
-ary = (0...200).to_a.shuffle
+unless ARGV.size == 1 && ARGV.first =~ /\A[1-9][0-9]*\Z/
+  puts "Usage: $ #{$0} [positive quantity of numbers to sort]"
+  exit 1
+end
+
+ary = (0...ARGV.first.to_i).to_a.shuffle
 puts "Before sort: #{ary.inspect}"
 puts "After sort: #{ary.heapsort!.inspect}"

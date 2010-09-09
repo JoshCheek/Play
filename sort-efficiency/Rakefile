@@ -1,0 +1,68 @@
+require 'rake/clean'
+
+# params that determine how we invoke the testing
+@arysize   =  ( ENV['arysize']  || 5         ).to_i    # size of the arrays to be sorted
+@times     =  ( ENV['times']    || 1_000_000 ).to_i    # how many times the arrays should be sorted
+@testsize  =  ( ENV['testsize'] || 10        ).to_i    # when running time-many, determines upper bound of test range
+
+def timer(&block)
+  require 'hitimes'
+  Hitimes::Interval.measure &block
+end
+
+def run_insertion_sort
+  timer { sh "./insertion.out #{@arysize} #{@times}" }
+end
+
+def run_merge_sort
+  timer { sh "./merge.out #{@arysize} #{@times}" }
+end
+
+
+# rule to build executables from source
+rule '.out' => '.c' do |task|
+  sh "gcc -o #{task.name} #{task.source}" 
+  sh "chmod 755 #{task.name}"
+end
+
+
+# create tasks for merge sort
+CLOBBER.include 'merge.out'
+desc "run merge.out"
+task :merge => 'merge.out' do
+  puts run_merge_sort
+end
+
+
+# create tasks for insertion sort
+CLOBBER.include 'insertion.out'
+desc "run insertion.out"
+task :insertion => 'insertion.out' do
+  puts run_insertion_sort
+end
+
+
+# compare the two for a given set of inputs
+desc "time the various sorts"
+task :time => [ :insertion , :merge ]
+
+
+# run a series of inputs to compare them to eachother
+desc "time across increasing sizes"
+task 'time-many' => [ 'insertion.out' , 'merge.out' ] do
+  puts "=====  THIS MAY TAKE A WHILE, RESULTS WILL BE DISPLAYED AT THE END :)  ====="
+  merge_results , insertion_results = Hash.new , Hash.new
+  (1..@testsize).each do |n|
+    @arysize = n
+    insertion_results[n] = run_insertion_sort
+    merge_results[n]     = run_merge_sort
+  end
+  n_size = @testsize.to_s.size
+  printf " %#{n_size}s | %10s | %10s | %6s \n" , 'n' , 'insertion' , 'merge' , 'ratio'
+  puts   "-#{'-'*n_size}------------------------------------"
+  (1..@testsize).each do |n| 
+    printf " %#{n_size}d | %10f | %10f | %6.2f \n" , n , insertion_results[n] , merge_results[n] , insertion_results[n]/merge_results[n]
+  end
+end
+
+task :default => 'time-many'
