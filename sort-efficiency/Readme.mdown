@@ -39,15 +39,15 @@ There are three variables you can change:
 
 * **arysize** defaults to 5, and is the size of the arrays to be sorted 
 
-  Example use: `$ rake time arysize=150`
+  Example: `$ rake time arysize=150`
   
 * **times** defaults to 1,000,000 and is the number of arrays to sort (number of times to repeat the sort)
 
-  Example use: `$ rake insertion times=100`
+  Example: `$ rake insertion times=100`
   
 * **testsize** defaults to 10 and is the upper bound on the range tested when running time-many
 
-  Example use: `$ rake time-many testsize=350`
+  Example: `$ rake time-many testsize=350`
 
 
 Dependencies
