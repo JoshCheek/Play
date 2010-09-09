@@ -55,6 +55,7 @@ Dependencies
 
 * [hitimes](http://rubygems.org/gems/hitimes) used to time the sorts
 * [rake](http://rubygems.org/gems/rake) to manage file dependencies and CLI
+* [gcc](http://gcc.gnu.org/) compile the C
 
 
 ---------------------------------------
