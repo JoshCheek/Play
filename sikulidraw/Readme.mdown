@@ -3,7 +3,8 @@ Description
 
 For my physics course, we are using webassign, which lets you do your homework online. Some of the questions have a flash drawing app with a black 1 pixel pencil tool. This code draws pictures onto it.
 
-See [results.png](http://github.com/JoshCheek/Play/blob/master/sikulidraw/results.png) for an example of what it looks like finished.
+Here is the final result, which I submitted.
+![results.png](http://github.com/JoshCheek/Play/raw/master/sikulidraw/results.png) for an example of what it looks like finished.
 
 Usage
 =====
