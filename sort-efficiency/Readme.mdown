@@ -7,7 +7,7 @@ I decided I wanted to compare the run times of the sort algorithms, so I coded a
 
 Still, it was fun. Here is a graph showing the results
 
-[graph](http://github.com/JoshCheek/Play/raw/master/sort-efficiency/results/results.jpg)
+![graph](http://github.com/JoshCheek/Play/raw/master/sort-efficiency/results/results.jpg)
 
 
 Usage
