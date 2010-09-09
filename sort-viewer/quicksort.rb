@@ -30,9 +30,10 @@ class QuickSort
         swap crnt , wall+1
         swap wall , wall+1
         wall += 1
-        @blues  = (0...values.size).to_a.slice left   , wall-left
-        @reds   = (0...values.size).to_a.slice wall+1 , right-wall-1
-        @whites = (0...values.size).to_a - @blues - @reds
+        @before_pivot    = (0...values.size).to_a.slice left   , wall-left
+        @after_pivot     = (0...values.size).to_a.slice wall+1 , crnt-wall
+        @to_evaluate     = (0...values.size).to_a.slice crnt+1 , right-crnt-1
+        @outside_domain  = (0...values.size).to_a - @before_pivot - @after_pivot - @to_evaluate
         draw
       end
     end
@@ -59,7 +60,8 @@ private
     if all_white
       super values.dup , :colors => { :white => values.dup }
     else
-      super values.dup , :colors => { :red => @reds.dup , :blue => @blues.dup , :white => (0...values.size).to_a-@reds-@blues }
+      super values.dup , :colors => { :red => @after_pivot.dup , :blue => @before_pivot.dup , :white => @outside_domain+@to_evaluate } ,
+                         :background_colors => {  :'#999999' => @before_pivot + @after_pivot + @to_evaluate } 
     end
   end
 

@@ -33,6 +33,8 @@ class HeapSort
       swap 0 , @size
       bubble_down
     end
+    @reds = @blues = []
+    draw
     values
   end
   
@@ -57,9 +59,16 @@ private
     reset_reds_blues
   end
   
-  
+  # red is the current element
+  # blue is the path that red will traverse
   def draw
-    super values.dup , :colors  => { :white => values-reds-blues , :red => reds.dup , :blue => blues.dup }
+    green     = :'#33CC33'
+    darkred   = :'#660000'
+    darkblue  = :'#002C85'
+    blue      = :'#0055FF'
+    super values.dup , 
+          :colors             => { :white => values-reds-blues , :red => reds.dup , blue => blues.dup } ,
+          :background_colors  => { darkred => reds.dup , darkblue => blues.dup }
   end
 
   def reset_reds_blues
