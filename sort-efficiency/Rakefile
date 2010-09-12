@@ -10,11 +10,11 @@ def timer(&block)
   Hitimes::Interval.measure &block
 end
 
-def run_insertion_sort
+def time_insertion_sort
   timer { sh "./insertion.out #{@arysize} #{@times}" }
 end
 
-def run_merge_sort
+def time_merge_sort
   timer { sh "./merge.out #{@arysize} #{@times}" }
 end
 
@@ -30,7 +30,7 @@ end
 CLOBBER.include 'merge.out'
 desc "run merge.out"
 task :merge => 'merge.out' do
-  puts run_merge_sort
+  puts time_merge_sort
 end
 
 
@@ -38,7 +38,7 @@ end
 CLOBBER.include 'insertion.out'
 desc "run insertion.out"
 task :insertion => 'insertion.out' do
-  puts run_insertion_sort
+  puts time_insertion_sort
 end
 
 
@@ -54,8 +54,8 @@ task 'time-many' => [ 'insertion.out' , 'merge.out' ] do
   merge_results , insertion_results = Hash.new , Hash.new
   (1..@testsize).each do |n|
     @arysize = n
-    insertion_results[n] = run_insertion_sort
-    merge_results[n]     = run_merge_sort
+    insertion_results[n] = time_insertion_sort
+    merge_results[n]     = time_merge_sort
   end
   n_size = @testsize.to_s.size
   printf " %#{n_size}s | %10s | %10s | %6s \n" , 'n' , 'insertion' , 'merge' , 'ratio'
