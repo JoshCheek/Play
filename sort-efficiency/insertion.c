@@ -26,7 +26,7 @@ void populate( int ary[] , int size ) {
 }
 
 
-void insertion_sort( int ary[] , int size ) {
+void sort( int ary[] , int size ) {
   int wall; // wall separates sorted left from unsorted right
   
   for( wall=0 ; wall < size ; ++wall ) {                                        
@@ -47,7 +47,7 @@ int main( int argc , char const *argv[] ) {
   int i=0 , size=atoi(argv[1]) , ary[size] , times_to_test=atoi(argv[2]);
   while( i++ < times_to_test ) {
     populate(ary,size);
-    insertion_sort(ary,size);
+    sort(ary,size);
     // if( !is_sorted(ary,size) ) {
     //   printf( "failure: not sorted\n" );
     //   print_ary(ary,size);
