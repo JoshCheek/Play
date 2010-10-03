@@ -1,4 +1,4 @@
-#!/usr/bin/env jruby
+#!/usr/bin/env jruby --server
 
 # make the results dir
 require 'fileutils'
