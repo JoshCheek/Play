@@ -25,9 +25,7 @@ Usage
 
 These are the commands and settings I used to generate the videos. You can of course change them if you like. For more control, you can play with [ffmpeg options](http://ffmpeg.org/ffmpeg-doc.html).
 
-### Bubble Sort
-
-[View video results](http://vimeo.com/15558527)
+### Bubble Sort [video](http://vimeo.com/15558527)
 
 For this one, I only had 30 elements in the Array. If I went with 200, like the others, it generated about 20k images. To compensate for having fewer elements, I increased pixel size so that the full images would be the same size as the others.
 
@@ -38,9 +36,7 @@ For this one, I only had 30 elements in the Array. If I went with 200, like the 
 Right now, it shows the bubble in magenta, and as it swaps with a new value, the old one becomes blue. Once it hits the end, it becomes green. This project has made it fairly clear to me that bubble sort is the worst sort of all.
 
 
-### Merge Sort
-
-[View video results](http://vimeo.com/15559012)
+### Merge Sort [video](http://vimeo.com/15559012)
 
     $ ./mergesort.rb 200
     $ ./to_images.rb --force --dir ./results_merge 
@@ -49,9 +45,7 @@ Right now, it shows the bubble in magenta, and as it swaps with a new value, the
 This is my personal favourite, I had to think about it for a while to figure out how to display it (thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me). Since it doesn't sort in place, I have it represent the two sorted subarrays as queues in an unsorted right portion, with the merged portion to the left.
 
 
-### Heap Sort
-
-[View video results](http://vimeo.com/15558918)
+### Heap Sort [video](http://vimeo.com/15558918)
 
 You might also try this one with 200 images, and using the default width and height. I like the bigger size, because it allows a bigger heap, but unfortunately, it more than doubles the number of images (it grows n lg n), which more than doubles the amount of time the video takes, and honestly, it got a little boring to watch.
 
@@ -62,9 +56,7 @@ You might also try this one with 200 images, and using the default width and hei
 This one is hard to see, I'm still not sure what the best way to show it is. Right now, it shows the sorted portion in green, and it shows the path of the element being bubbled down in pink. And it shows all the children of the current location in the bubble down path as having blue behind them. I thought that would be pretty cool, to see where the possible final locations are, and how big they are, and watch them get whittled down as it moves down the heap. But in the end, I think it is just confusing. Open to suggestions here.
 
 
-### Insertion Sort
-
-[View video results](http://vimeo.com/15558983)
+### Insertion Sort [video](http://vimeo.com/15558983)
 
 Another absurdly long and tedious one, so cut it down to width of 40.
 
@@ -73,9 +65,7 @@ Another absurdly long and tedious one, so cut it down to width of 40.
     $ ffmpeg -r 16 -f image2 -i ./results_insertion/%05d.gif -b 600k ./insertionsort.mp4
     
 
-### Quick Sort
-
-[View video results](http://vimeo.com/15559072)
+### Quick Sort [video](http://vimeo.com/15559072)
 
     $ ./quicksort.rb 200
     $ ./to_images.rb --force --dir ./results_quick
