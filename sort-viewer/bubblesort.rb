@@ -32,6 +32,7 @@ class BubbleSort
       bubble_up
       @last -= 1
     end
+    @reds = @blues = []
     values
   end
   
