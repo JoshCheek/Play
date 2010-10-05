@@ -6,7 +6,7 @@ These are not good general purpose sort algorithms, they have been modified to w
 Description
 ===========
 
-[Video results have been uploaded to Vimeo](http://vimeo.com/channels/138529)
+[Video results](http://vimeo.com/channels/138529) can be streamed or downloaded from Vimeo.
 
 After seeing [this youtube video](http://www.youtube.com/watch?v=iXAjiDQbPSw) I realized that I had most of the knowledge necessary to do that myself. I enjoy small projects like this, so I sat down to see if I could do it with a heap sort. But I quickly became enchanted by the idea of doing merge sort too, so I added that (I think the merge sort came out the best).  By then, I had it generalized enough that adding a new sort was just a matter of modifying a small amount of code, so I added bubble sort, and then insertion sort.
 
