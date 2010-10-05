@@ -24,10 +24,17 @@ class InsertionSort
   
   def sort!
     draw true
-    @last = 0                # last index of the sorted left
+    @last = 0                   # last index of the sorted left
+    @crnt_color ||= :'#F8A1FE'  # magenta
+    @next_color ||= :'#00EE00'  # green
     values.size.times do
+      @crnt_color , @next_color = @next_color , @crnt_color
+      @next = @last+1 unless @last+1 == values.size
       insert
-      @last += 1
+      @reds = Array.new
+      @blues = Array(0..@last)
+      draw
+      @last = @next
     end
     draw true
     values
@@ -41,11 +48,10 @@ private
 
   def insert
     to_move = @last
-    @blues = Array.new
     until to_move <= 0 || @compare[ values[to_move] , values[to_move-1] ] >= 0
-      @blues << to_move
       to_move -= 1
       @reds = [to_move]
+      @blues = Array(0..@last) - @reds
       values[to_move] , values[to_move+1] = values[to_move+1] , values[to_move]
       draw
     end
@@ -64,7 +70,7 @@ private
     if all_white
       super values.dup , :colors => { :white => values.dup }
     else
-      super values.dup , :colors => { magenta => @reds.dup , blue => @blues.dup , :white => (0...values.size).to_a-@reds-@blues }
+      super values.dup , :colors => { @crnt_color => @reds.dup , @next_color => [@next] , blue => @blues.dup , :white => (0...values.size).to_a-@reds-@blues-[@next] }
     end
   end
 
