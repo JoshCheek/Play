@@ -1,19 +1,29 @@
 #!/usr/bin/env jruby --server
 
-# make the results dir
-require 'fileutils'
-dirname = './results'
-FileUtils.mkdir dirname unless File.exist? dirname
-
 # import the jruby classes
 include Java
 import javax.imageio.ImageIO
 import java.awt.image.BufferedImage
 import java.awt.image.WritableRaster
 
+# option parsing
+require 'trollop'
+opts = Trollop::options do
+  opt :dir    , "Dir to save the results in"            , :type => :string   , :default => './results' 
+  opt :height , "Height for each pixel"                 , :type => :integer  , :default => 2           
+  opt :width  , "Width of each pixel"                   , :type => :integer  , :default => 3           
+  opt :force  , "Deletes dir before generating images"  , :type => :boolean  , :default => false
+end
+
+# make the results dir
+require 'fileutils'
+dirname = opts[:dir]
+FileUtils.rm_rf dirname if opts[:force]
+FileUtils.mkdir dirname unless File.exist? dirname
+
 # set relevant variables
-pixel_height = 2
-pixel_width  = 3
+pixel_height = opts[:height]
+pixel_width  = opts[:width]
 images = Marshal.load File.read('positions')    # retrieve the processed data from the file
 height = values = pixels = nil                  # declare these in enclosing scope
 
