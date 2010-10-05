@@ -30,6 +30,7 @@ class QuickSort
         swap crnt , wall+1
         swap wall , wall+1
         wall += 1
+        @pivot = wall
         @before_pivot    = (0...values.size).to_a.slice left   , wall-left
         @after_pivot     = (0...values.size).to_a.slice wall+1 , crnt-wall
         @to_evaluate     = (0...values.size).to_a.slice crnt+1 , right-crnt-1
@@ -57,11 +58,19 @@ private
 
 
   def draw( all_white = false )
+    green     = :'#00EE00'
+    darkred   = :'#660000'
+    darkblue  = :'#002C85'
+    blue      = :'#00AEEF'
+    magenta   = :'#F8A1FE' # :'#662D91'
+    peach     = :'#FF9966'
+    lavender  = :'#CCCCFF'
+    
     if all_white
       super values.dup , :colors => { :white => values.dup }
     else
-      super values.dup , :colors => { :red => @after_pivot.dup , :blue => @before_pivot.dup , :white => @outside_domain+@to_evaluate } ,
-                         :background_colors => {  :'#999999' => @before_pivot + @after_pivot + @to_evaluate } 
+      super values.dup , :colors => { magenta => @after_pivot.dup , blue => @before_pivot.dup , :white => @outside_domain , green => @to_evaluate }
+                         # :background_colors => {  lavender => [@pivot] } 
     end
   end
 

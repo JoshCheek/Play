@@ -50,10 +50,16 @@ class MergeSort
 private
 
   def draw( all_white = false )
+    green     = :'#00EE00'
+    darkred   = :'#660000'
+    darkblue  = :'#002C85'
+    blue      = :'#00AEEF'
+    magenta   = :'#F8A1FE' # :'#662D91'
+    
     if all_white
       super values.dup , :colors => { :white => values.dup }
     else
-      super values.dup , :colors => { :red => @initial_reds + @always_reds , :blue => @initial_blues + @always_blues , :white => @whites }
+      super values.dup , :colors => { magenta => @initial_reds + @always_reds , blue => @initial_blues + @always_blues , :white => @whites }
     end
   end
 

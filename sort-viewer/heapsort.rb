@@ -72,7 +72,7 @@ private
   # red is the current element
   # blue is the path that red will traverse
   def draw
-    green     = :'#7CC576'
+    green     = :'#00EE00'
     darkred   = :'#660000'
     darkblue  = :'#002C85'
     blue      = :'#00AEEF'
@@ -80,7 +80,7 @@ private
     greens    = Array(0...values.size)[@size...values.size]
     @blues -= reds
     super values.dup , 
-          :colors             => { :white => values[0...@size]-reds-greens , magenta => reds.dup , :greens => greens },
+          :colors             => { :white => values[0...@size]-reds-greens , magenta => reds.dup , green => greens },
           :background_colors  => { blue => blues.dup }
   end
 
