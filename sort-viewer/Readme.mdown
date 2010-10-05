@@ -6,32 +6,83 @@ These are not good general purpose sort algorithms, they have been modified to w
 Description
 ===========
 
+[Video results have been uploaded to Vimeo](http://vimeo.com/channels/138529)
+
 After seeing [this youtube video](http://www.youtube.com/watch?v=iXAjiDQbPSw) I realized that I had most of the knowledge necessary to do that myself. I enjoy small projects like this, so I sat down to see if I could do it with a heap sort. But I quickly became enchanted by the idea of doing merge sort too, so I added that (I think the merge sort came out the best).  By then, I had it generalized enough that adding a new sort was just a matter of modifying a small amount of code, so I added bubble sort, and then insertion sort.
 
 To turn the array of integers that is being sorted into a graphic, I used JRuby. I tried to find a way to set large portions of my image at once, but I guess I'm just not smart enough to figure out the Java API -.^ so I draw the pictures pixel by pixel. The JRuby solution is really nice, to do a merge sort with over 1300 images at 600x400 pixels, it takes over 7 minutes, where as the ImageMagick "solution" was taking close to an hour. I think if I better understood the Java API, I could get it down considerably lower.
 
-This is my first project I've used JRuby in, and I have to say that aside from how long it takes to load the runtime, I am really satisfied. I spent so much effort, and incurred so many liabilities trying to work around ImageMagick, that to have it run so much quicker, with so much less code is very satisfying. Interfacing with Java was very straightforward. The only potential gotcha was to convert the array to a java array. But its error messages make it clear that the Ruby versions are not equivalent, and glancing at an example quickly revealed the to_java method.
+This is my first project I've used JRuby in, and I have to say that aside from how long it takes to load the runtime, I am really satisfied. I spent so much effort, and incurred so many liabilities trying to work around ImageMagick, that to have it run so much quicker, with so much less code is very satisfying. Interfacing with Java was very straightforward. The only potential gotcha was to convert the array to a Java array. But its error messages make it clear that the Ruby versions are not equivalent, and glancing at an example quickly revealed the to_java method.
 
-There is quite a bit of leeway regarding how to colour the images, and with a small amount of hacking, you could add flexibility for sizes as well. The images come out looking pretty similar to the ones on the video, but having them high quality, where I can pause, move forward and backward, is nice. I was able to use it to explain to my parents how all the different sorts work, and as far as I know, neither of them have ever done any programming (it is possible they were humouring me).
+This is also the first time I've used Trollop, and I have to say I like it quite a bit. Granted I am just using the simple version, but that is all I needed. I was initially disappointed that I couldn't get ruby's -s flag to work, but this is light enough that I'm just fine with it. I had started to use optparse, but it's just too much for what I want, I was getting exhausted just thinking about figuring out how it works again.
+
+There is quite a bit of leeway regarding how to colour the images, but you'll have to change the source to do it. With a little bit of hacking, you can also change what gets coloured, and how it gets coloured. The images come out looking pretty similar to the ones on the video, but having them high quality, where I can pause, move forward and backward, is nice. I was able to use it to explain to my parents how all the different sorts work, and as far as I know, neither of them have ever done any programming (it is possible they were humouring me).
+
 
 
 Usage
 =====
 
-    $ ./mergesort.rb
-    $ ./to_images.rb
+These are the commands and settings I used to generate the videos. You can of course change them if you like. For more control, you can play with [ffmpeg options](http://ffmpeg.org/ffmpeg-doc.html).
 
-Then, to to view them open the images in whatever viewer you like. If you are on OSX, this is a very nice way to cycle through and analyze the output in Preview.
+### Bubble Sort
 
-    $ cd results
-    $ open *
+[View video results](http://vimeo.com/15558527)
 
-To then turn them into videos, I used ffmpeg, with the following incantations
+For this one, I only had 30 elements in the Array. If I went with 200, like the others, it generated about 20k images. To compensate for having fewer elements, I increased pixel size so that the full images would be the same size as the others.
 
-    $ ffmpeg -r 8  -f image2 -i ./results_mergesort/%05d.gif     -b 600k ./mergesort.mp4
-    $ ffmpeg -r 8  -f image2 -i ./results_heapsort/%05d.gif      -b 600k ./heapsort.mp4
-    $ ffmpeg -r 96 -f image2 -i ./results_bubblesort/%05d.gif    -b 600k ./bubblesort.mp4
-    $ ffmpeg -r 96 -f image2 -i ./results_insertionsort/%05d.gif -b 600k ./insertionsort.mp4
+    $ ./bubblesort.rb 40
+    $ ./to_images.rb --force --dir results_bubble --width 15 --height 10
+    $ ffmpeg -r 32 -f image2 -i ./results_bubble/%05d.gif -b 600k ./bubblesort.mp4
+    
+Right now, it shows the bubble in magenta, and as it swaps with a new value, the old one becomes blue. Once it hits the end, it becomes green. This project has made it fairly clear to me that bubble sort is the worst sort of all.
+
+
+### Merge Sort
+
+[View video results](http://vimeo.com/15559012)
+
+    $ ./mergesort.rb 200
+    $ ./to_images.rb --force --dir ./results_merge 
+    $ ffmpeg -r 8 -f image2 -i ./results_merge/%05d.gif -b 600k ./mergesort.mp4
+
+This is my personal favourite, I had to think about it for a while to figure out how to display it (thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me). Since it doesn't sort in place, I have it represent the two sorted subarrays as queues in an unsorted right portion, with the merged portion to the left.
+
+
+### Heap Sort
+
+[View video results](http://vimeo.com/15558918)
+
+You might also try this one with 200 images, and using the default width and height. I like the bigger size, because it allows a bigger heap, but unfortunately, it more than doubles the number of images (it grows n lg n), which more than doubles the amount of time the video takes, and honestly, it got a little boring to watch.
+
+    $ ./heapsort.rb 100
+    $ ./to_images.rb --force --dir ./results_heap --width 6 --height 4
+    $ ffmpeg -r 10 -f image2 -i ./results_heap/%05d.gif -b 600k ./heapsort.mp4
+
+This one is hard to see, I'm still not sure what the best way to show it is. Right now, it shows the sorted portion in green, and it shows the path of the element being bubbled down in pink. And it shows all the children of the current location in the bubble down path as having blue behind them. I thought that would be pretty cool, to see where the possible final locations are, and how big they are, and watch them get whittled down as it moves down the heap. But in the end, I think it is just confusing. Open to suggestions here.
+
+
+### Insertion Sort
+
+[View video results](http://vimeo.com/15558983)
+
+Another absurdly long and tedious one, so cut it down to width of 40.
+
+    $ ./heapsort.rb 40
+    $ ./to_images.rb --force --dir results_insertion --width 15 --height 10
+    $ ffmpeg -r 16 -f image2 -i ./results_insertion/%05d.gif -b 600k ./insertionsort.mp4
+    
+
+### Quick Sort
+
+[View video results](http://vimeo.com/15559072)
+
+    $ ./quicksort.rb 200
+    $ ./to_images.rb --force --dir ./results_quick
+    $ ffmpeg -r 16 -f image2 -i ./results_quick/%05d.gif -b 600k ./quicksort.mp4
+
+The pivot is coloured white, items less than the pivot are coloured blue, items greater are coloured pink, items that haven't yet been evaluated are coloured green. Items outside the portion that the pivot is segregating are left white. 
+
 
 
 Dependencies
@@ -39,9 +90,17 @@ Dependencies
 
 * [JRuby](http://jruby.org/)
 * [ffmpeg](http://www.ffmpeg.org/)
+* [Trollop](http://rubygems.org/gems/trollop)
 
 They don't say to do this on the JRuby site, but if you're on a unix based system, you can use [rvm](http://rvm.beginrescueend.com/) to install it (my preference)
 
+
+To Do
+=====
+
+* Find a better representation of Heap Sort.
+* Clean up naming conventions, name groups after what they contain, not their colour, as it just leads to confusion since we changed colours
+* Consider having Quick Sort RHS move statically (shift pinks to the right rather than appending to the end), so it doesn't look like it is jumping all over the place.
 
 
 ---------------------------------------
