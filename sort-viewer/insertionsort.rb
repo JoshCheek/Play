@@ -18,21 +18,17 @@ class InsertionSort
   
   def initialize(ary,&block)
     block ||= lambda { |a,b| a.send :'<=>' , b }
-    @values   =  ary
-    @compare  =  block
+    @values     =  ary
+    @compare    =  block
   end
   
   def sort!
     draw true
     @last = 0                   # last index of the sorted left
-    @crnt_color ||= :'#F8A1FE'  # magenta
-    @next_color ||= :'#00EE00'  # green
     values.size.times do
-      @crnt_color , @next_color = @next_color , @crnt_color
       @next = @last+1 unless @last+1 == values.size
       insert
-      @reds = Array.new
-      @blues = Array(0..@last)
+      partition_for_colours
       draw
       @last = @next
     end
@@ -46,12 +42,20 @@ class InsertionSort
   
 private
 
+  def partition_for_colours(&modify_evens_or_odds)
+    @odds    =  Array(0...size).select { |i| i > @last && i.odd?  }
+    @evens   =  Array(0...size).select { |i| i > @last && i.even? }
+    modify_evens_or_odds.call if modify_evens_or_odds
+    @sorted  =  Array(0..@last) - @evens - @odds
+  end
+
   def insert
     to_move = @last
     until to_move <= 0 || @compare[ values[to_move] , values[to_move-1] ] >= 0
       to_move -= 1
-      @reds = [to_move]
-      @blues = Array(0..@last) - @reds
+      partition_for_colours do 
+        (@last.even? && @evens || @odds) << to_move 
+      end
       values[to_move] , values[to_move+1] = values[to_move+1] , values[to_move]
       draw
     end
@@ -66,12 +70,19 @@ private
     magenta   = :'#F8A1FE' # :'#662D91'
     peach     = :'#FF9966'
     lavender  = :'#CCCCFF'
-    
     if all_white
       super values.dup , :colors => { :white => values.dup }
     else
-      super values.dup , :colors => { @crnt_color => @reds.dup , @next_color => [@next] , blue => @blues.dup , :white => (0...values.size).to_a-@reds-@blues-[@next] }
+      super values.dup , :colors => { 
+        magenta  =>  @odds        ,
+        blue     =>  @evens       , 
+        green    =>  @sorted.dup  ,
+      }
     end
+  end
+  
+  def size
+    values.size
   end
 
   attr_reader :values
