@@ -58,7 +58,7 @@ This one is hard to see, I'm still not sure what the best way to show it is. Rig
 
 ### Insertion Sort ([video](http://vimeo.com/15558983))
 
-    $ ./heapsort.rb 40
+    $ ./insertionsort.rb 40
     $ ./to_images.rb --force --dir results_insertion --width 15 --height 10
     $ ffmpeg -r 16 -f image2 -i ./results_insertion/%05d.gif -b 600k ./insertionsort.mp4
 
