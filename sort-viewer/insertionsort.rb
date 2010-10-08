@@ -23,7 +23,6 @@ class InsertionSort
   end
   
   def sort!
-    draw true
     @last = 0                   # last index of the sorted left
     values.size.times do
       @next = @last+1 unless @last+1 == values.size
