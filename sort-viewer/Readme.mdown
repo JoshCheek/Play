@@ -74,7 +74,7 @@ Another absurdly long and tedious one, so cut it down to width of 40.
 The pivot is coloured white, items less than the pivot are coloured blue, items greater are coloured pink, items that haven't yet been evaluated are coloured green. Items outside the portion that the pivot is segregating are left white. 
 
 
-### Selection Sort ([video](#))
+### Selection Sort ([video](http://vimeo.com/15673458))
 
     $ ./selectionsort.rb 40
     $ ./to_images.rb --force --dir results_selection --width 15 --height 10
