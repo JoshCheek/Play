@@ -105,7 +105,6 @@ To Do
 
 * Find a better representation of Heap Sort.
 * Clean up naming conventions, name groups after what they contain, not their colour, as it just leads to confusion since we changed colours
-* Consider having Quick Sort RHS move statically (shift pinks to the right rather than appending to the end), so it doesn't look like it is jumping all over the place.
 
 
 ---------------------------------------
