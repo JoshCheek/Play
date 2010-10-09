@@ -65,7 +65,7 @@ This one is hard to see, I'm still not sure what the best way to show it is. Rig
 Another absurdly long and tedious one, so cut it down to width of 40.
     
 
-### Quick Sort ([video1](http://vimeo.com/15559072),[video2](#))
+### Quick Sort ([video-small](http://vimeo.com/15559072),[video-large](http://vimeo.com/15680153))
 
     $ # Small Set
     $ ./quicksort.rb 100
