@@ -22,24 +22,42 @@ class QuickSort
     @compare  =  block
   end
   
-  def sort!( left=0 , right=values.size )
+  def sort!( left=0 , right=size )
     return unless left < right
-    wall = left
+    # wall = left
+    # left.next.upto right-1 do |crnt|
+    #   if @compare[ values[wall] , values[crnt] ] > 0
+    #     swap crnt , wall+1
+    #     swap wall , wall+1
+    #     wall += 1
+    #     @pivot = wall
+    #     @before_pivot    = (0...values.size).to_a.slice left   , wall-left
+    #     @after_pivot     = (0...values.size).to_a.slice wall+1 , crnt-wall
+    #     @to_evaluate     = (0...values.size).to_a.slice crnt+1 , right-crnt-1
+    #     @outside_domain  = (0...values.size).to_a - @before_pivot - @after_pivot - @to_evaluate
+    #     draw
+    #   end
+    # end
+    # sort! left   , wall
+    # sort! wall+1 , right
+    # values
+    pivot = left
     left.next.upto right-1 do |crnt|
-      if @compare[ values[wall] , values[crnt] ] > 0
-        swap crnt , wall+1
-        swap wall , wall+1
-        wall += 1
-        @pivot = wall
-        @before_pivot    = (0...values.size).to_a.slice left   , wall-left
-        @after_pivot     = (0...values.size).to_a.slice wall+1 , crnt-wall
-        @to_evaluate     = (0...values.size).to_a.slice crnt+1 , right-crnt-1
-        @outside_domain  = (0...values.size).to_a - @before_pivot - @after_pivot - @to_evaluate
-        draw
+      if @compare[ values[pivot] , values[crnt] ] > 0
+        next_up = values[crnt]
+        crnt.downto(pivot+1) { |i| values[i] = values[i-1] }
+        values[pivot] = next_up
+        pivot += 1
       end
+      @pivot           = [pivot]
+      @before_pivot    = (0...values.size).to_a.slice left    , pivot-left
+      @after_pivot     = (0...values.size).to_a.slice pivot+1 , crnt-pivot
+      @to_evaluate     = (0...values.size).to_a.slice crnt+1  , right-crnt-1
+      @outside_domain  = (0...values.size).to_a - @before_pivot - @after_pivot - @to_evaluate - @pivot
+      draw
     end
-    sort! left   , wall
-    sort! wall+1 , right
+    sort! left    , pivot
+    sort! pivot+1 , right
     values
   end
   
@@ -57,23 +75,26 @@ private
   end
 
 
-  def draw( all_white = false )
+  def draw( all_green = false )
     green     = :'#00EE00'
     darkred   = :'#660000'
     darkblue  = :'#002C85'
     blue      = :'#00AEEF'
-    magenta   = :'#F8A1FE' # :'#662D91'
+    magenta   = :'#F8A1FE'
     peach     = :'#FF9966'
     lavender  = :'#CCCCFF'
-    
-    if all_white
-      super values.dup , :colors => { :white => values.dup }
+    white     = :'#FFFFFF'
+    if all_green
+      super values.dup , :colors => { green => values.dup }
     else
-      super values.dup , :colors => { magenta => @after_pivot.dup , blue => @before_pivot.dup , :white => @outside_domain , green => @to_evaluate }
-                         # :background_colors => {  lavender => [@pivot] } 
+      super values.dup , :colors => { magenta => @after_pivot , blue => @before_pivot , white => @to_evaluate , green => @outside_domain+@pivot }
     end
   end
 
+  def size
+    values.size
+  end
+  
   attr_reader :values
 
 end

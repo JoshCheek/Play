@@ -65,11 +65,17 @@ This one is hard to see, I'm still not sure what the best way to show it is. Rig
 Another absurdly long and tedious one, so cut it down to width of 40.
     
 
-### Quick Sort ([video](http://vimeo.com/15559072))
+### Quick Sort ([video1](http://vimeo.com/15559072),[video2](#))
 
-    $ ./quicksort.rb 200
-    $ ./to_images.rb --force --dir ./results_quick
-    $ ffmpeg -r 16 -f image2 -i ./results_quick/%05d.gif -b 600k ./quicksort.mp4
+    $ # Small Set
+    $ ./quicksort.rb 100
+    $ ./to_images.rb --force --dir ./results_quick_small
+    $ ffmpeg -r 8 -f image2 -i ./results_quick_small/%05d.gif -b 600k ./quicksort.mp4
+    
+    $ # Large Set
+    $ ./quicksort.rb 400
+    $ ./to_images.rb --force --dir ./results_quick_large --width 1.5 --height 1
+    $ ffmpeg -r 64 -f image2 -i ./results_quick_lerge/%05d.gif -b 600k ./quicksort.mp4
 
 The pivot is coloured white, items less than the pivot are coloured blue, items greater are coloured pink, items that haven't yet been evaluated are coloured green. Items outside the portion that the pivot is segregating are left white. 
 
