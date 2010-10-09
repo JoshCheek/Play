@@ -10,8 +10,8 @@ import java.awt.image.WritableRaster
 require 'trollop'
 opts = Trollop::options do
   opt :dir    , "Dir to save the results in"            , :type => :string   , :default => './results' 
-  opt :height , "Height for each pixel"                 , :type => :integer  , :default => 2           
-  opt :width  , "Width of each pixel"                   , :type => :integer  , :default => 3           
+  opt :height , "Height for each pixel"                 , :type => :float    , :default => 2.0
+  opt :width  , "Width of each pixel"                   , :type => :float    , :default => 3.0         
   opt :force  , "Deletes dir before generating images"  , :type => :boolean  , :default => false
 end
 
@@ -51,9 +51,9 @@ end
 # it will add the lines to the picture that we are building
 add_lines = lambda do |colour,to_add,location|
   to_add.each do |index|
-    start_y , end_y = (location == :background ? 0 : height) , (height - values[index]*pixel_height)    # the array can go from zero to the height of the value, or from the height of the value to the height of the canvas
+    start_y , end_y = (location == :background ? 0 : height) , (height - values[index]*pixel_height).to_i    # the array can go from zero to the height of the value, or from the height of the value to the height of the canvas
     start_y , end_y = end_y , start_y unless start_y < end_y                                            # ensure we are moving from low to high
-    for x in pixel_width*index ... pixel_width*index.next
+    for x in (pixel_width*index).to_i ... (pixel_width*index.next).to_i
       (start_y...end_y).each { |y| pixels.set_pixel x , y , colour }
     end
   end
@@ -71,8 +71,8 @@ images.each_with_index do |image,index|
   
   # find the image's picture values (order of sortedness), and determine its width and height
   values  = image[:values]
-  height  = values.size * pixel_height
-  width   = values.size * pixel_width
+  height  = (values.size * pixel_height).to_i
+  width   = (values.size * pixel_width).to_i
 
   # http://download.oracle.com/javase/6/docs/api/java/awt/image/BufferedImage.html
   canvas = BufferedImage.new width , height , BufferedImage::TYPE_INT_RGB
