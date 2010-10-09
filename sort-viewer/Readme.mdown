@@ -28,7 +28,7 @@ These are the commands and settings I used to generate the videos. You can of co
 ### Bubble Sort ([video](http://vimeo.com/15558527))
 
     $ ./bubblesort.rb 40
-    $ ./to_images.rb --force --dir results_bubble --width 15 --height 10
+    $ ./to_images.rb --dir results_bubble --width 15 --height 10
     $ ffmpeg -r 32 -f image2 -i ./results_bubble/%05d.gif -b 600k ./bubblesort.mp4
 
 For this one, I only had 30 elements in the Array. If I went with 200, like the others, it generated about 20k images. To compensate for having fewer elements, I increased pixel size so that the full images would be the same size as the others.
@@ -39,7 +39,7 @@ Right now, it shows the bubble in magenta, and as it swaps with a new value, the
 ### Merge Sort ([video](http://vimeo.com/15559012))
 
     $ ./mergesort.rb 200
-    $ ./to_images.rb --force --dir ./results_merge 
+    $ ./to_images.rb --dir ./results_merge 
     $ ffmpeg -r 8 -f image2 -i ./results_merge/%05d.gif -b 600k ./mergesort.mp4
 
 This is my personal favourite, I had to think about it for a while to figure out how to display it (thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me). Since it doesn't sort in place, I have it represent the two sorted subarrays as queues in an unsorted right portion, with the merged portion to the left.
@@ -48,7 +48,7 @@ This is my personal favourite, I had to think about it for a while to figure out
 ### Heap Sort ([video](http://vimeo.com/15558918))
 
     $ ./heapsort.rb 100
-    $ ./to_images.rb --force --dir ./results_heap --width 6 --height 4
+    $ ./to_images.rb --dir ./results_heap --width 6 --height 4
     $ ffmpeg -r 10 -f image2 -i ./results_heap/%05d.gif -b 600k ./heapsort.mp4
 
 You might also try this one with 200 images, and using the default width and height. I like the bigger size, because it allows a bigger heap, but unfortunately, it more than doubles the number of images (it grows n lg n), which more than doubles the amount of time the video takes, and honestly, it got a little boring to watch.
@@ -59,7 +59,7 @@ This one is hard to see, I'm still not sure what the best way to show it is. Rig
 ### Insertion Sort ([video](http://vimeo.com/15558983))
 
     $ ./insertionsort.rb 40
-    $ ./to_images.rb --force --dir results_insertion --width 15 --height 10
+    $ ./to_images.rb --dir results_insertion --width 15 --height 10
     $ ffmpeg -r 16 -f image2 -i ./results_insertion/%05d.gif -b 600k ./insertionsort.mp4
 
 Another absurdly long and tedious one, so cut it down to width of 40.
@@ -69,12 +69,12 @@ Another absurdly long and tedious one, so cut it down to width of 40.
 
     $ # Small Set
     $ ./quicksort.rb 100
-    $ ./to_images.rb --force --dir ./results_quick_small --width 6 --height 4
+    $ ./to_images.rb --dir ./results_quick_small --width 6 --height 4
     $ ffmpeg -r 16 -f image2 -i ./results_quick_small/%05d.gif -b 600k ./quicksort_small.mp4
     
     $ # Large Set
     $ ./quicksort.rb 400
-    $ ./to_images.rb --force --dir ./results_quick_large --width 1.5 --height 1
+    $ ./to_images.rb --dir ./results_quick_large --width 1.5 --height 1
     $ ffmpeg -r 64 -f image2 -i ./results_quick_large/%05d.gif -b 600k ./quicksort_large.mp4
 
 The pivot is coloured white, items less than the pivot are coloured blue, items greater are coloured pink, items that haven't yet been evaluated are coloured green. Items outside the portion that the pivot is segregating are left white. 
@@ -83,7 +83,7 @@ The pivot is coloured white, items less than the pivot are coloured blue, items 
 ### Selection Sort ([video](http://vimeo.com/15673458))
 
     $ ./selectionsort.rb 40
-    $ ./to_images.rb --force --dir results_selection --width 15 --height 10
+    $ ./to_images.rb --dir results_selection --width 15 --height 10
     $ ffmpeg -r 32 -f image2 -i ./results_selection/%05d.gif -b 600k ./selectionsort.mp4
 
 Another absurdly long and tedious one, so cut it down to width of 40. The magenta bar goes out searching for the lowest unsorted item. The current lowest is marked in blue. The two blue bars will be swapped after it has finished its search.
