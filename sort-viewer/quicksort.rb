@@ -24,29 +24,12 @@ class QuickSort
   
   def sort!( left=0 , right=size )
     return unless left < right
-    # wall = left
-    # left.next.upto right-1 do |crnt|
-    #   if @compare[ values[wall] , values[crnt] ] > 0
-    #     swap crnt , wall+1
-    #     swap wall , wall+1
-    #     wall += 1
-    #     @pivot = wall
-    #     @before_pivot    = (0...values.size).to_a.slice left   , wall-left
-    #     @after_pivot     = (0...values.size).to_a.slice wall+1 , crnt-wall
-    #     @to_evaluate     = (0...values.size).to_a.slice crnt+1 , right-crnt-1
-    #     @outside_domain  = (0...values.size).to_a - @before_pivot - @after_pivot - @to_evaluate
-    #     draw
-    #   end
-    # end
-    # sort! left   , wall
-    # sort! wall+1 , right
-    # values
     pivot = left
     left.next.upto right-1 do |crnt|
       if @compare[ values[pivot] , values[crnt] ] > 0
         next_up = values[crnt]
-        crnt.downto(pivot+1) { |i| values[i] = values[i-1] }
-        values[pivot] = next_up
+        crnt.downto(pivot+1) { |i| values[i] = values[i-1] }  # creative liberties ;P 
+        values[pivot] = next_up                               # older versions had a more strict interpretation, but I felt it was confusing
         pivot += 1
       end
       @pivot           = [pivot]
