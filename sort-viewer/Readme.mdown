@@ -38,11 +38,11 @@ Right now, it shows the bubble in magenta, and as it swaps with a new value, the
 
 ### Merge Sort ([video](http://vimeo.com/15559012))
 
-    $ ./mergesort.rb 200
-    $ ./to_images.rb --dir ./results_merge 
+    $ ./mergesort.rb 400
+    $ ./to_images.rb --dir ./results_merge --width 1.5 --height 1
     $ ffmpeg -r 8 -f image2 -i ./results_merge/%05d.gif -b 600k ./mergesort.mp4
 
-This is my personal favourite, I had to think about it for a while to figure out how to display it (thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me). Since it doesn't sort in place, I have it represent the two sorted subarrays as queues in an unsorted right portion, with the merged portion to the left.
+This is my personal favourite, I had to think about it for a while to figure out how to display it (thanks to [Kevin Griffin](http://github.com/kevingriffin) for analyzing it on the chalkboard with me). Since it doesn't sort in place, I have it represent the two sorted subarrays as queues in an unsorted right portion, with the merged portion to the left. Conceptually, I think about it as sorting both halves simultaneously, as shown here, but in reality, it does not. This, however, is much more interesting to watch. To see the non simultaneous version, use mergesort.old.rb
 
 
 ### Heap Sort ([video](http://vimeo.com/15558918))

@@ -10,7 +10,8 @@ def draw( values , colours=Hash.new )
     end
     Array.new
   end
-  $results << colours.merge(:values => values)
+  to_add = colours.merge(:values => values)
+  $results << to_add unless $results.last == to_add
 end
 
 
@@ -18,77 +19,104 @@ class MergeSort
   
   def initialize(ary,first=nil,last=nil,&block)
     block ||= lambda { |a,b| a.send :'<=>' , b }
-    @first              =  first || 0
-    @last               =  last  || ary.size
-    @values             =  ary
-    @compare            =  block
+    @values    =  ary
+    @compare   =  block
+    @sections  =  Array.new(ary.size.next/2) do |i|
+      first  = i * 2
+      second = first + 1
+      Section.new values[first...second] , values[second..second] , block
+    end
   end
   
   def sort!
-    return values if size < 2
-    middle = (first + last) / 2
-    self.class.new( values , first  , middle , &@compare ).sort!
-    self.class.new( values , middle , last   , &@compare ).sort!
-    @initial_reds   = Array(first...middle)                             # these arrays keep track of the indexes that should be each colour
-    @initial_blues  = Array(middle...last)
-    @always_reds    = Array.new
-    @always_blues   = Array.new
-    @whites         = (0...values.size).to_a - @initial_reds - @initial_blues
-    merge first , middle
-    draw true
-    values
+    until @sections.size == 1 && @sections.first.sorted?
+      until @sections.all?(&:sorted?)
+        @sections.each { |section| section.sort_iteration }
+        draw
+      end
+      @sections = @sections.each_slice(2).map do |sections|
+        s1 = sections.shift # have to do it this way b/c jruby doesn't support default values for block args
+        s2 = sections.shift # s2 might be nil, indicating an odd number of sections, and thus no pair for s1
+        if s2
+          Section.new s1.merged , s2.merged , @compare
+        else
+          s1
+        end
+      end
+      draw
+    end
+    @values = @sections.first.merged
   end
   
   def sort
     self.class.new( values.dup , &@compare ).sort!
   end
-  
-  def size
-    last - first
-  end
 
 private
 
-  def draw( all_white = false )
-    green     = :'#00EE00'
-    darkred   = :'#660000'
-    darkblue  = :'#002C85'
-    blue      = :'#00AEEF'
-    magenta   = :'#F8A1FE' # :'#662D91'
-    
-    if all_white
-      super values.dup , :colors => { :white => values.dup }
-    else
-      super values.dup , :colors => { magenta => @initial_reds + @always_reds , blue => @initial_blues + @always_blues , :white => @whites }
+  class Section
+    attr_accessor :merged , :left , :right , :compare , :from_left , :from_right
+    def inspect
+      "<SECTION: merged=#{merged.inspect} left=#{left.inspect} right=#{right.inspect} from_left=#{from_left.inspect} from_right=#{from_right.inspect}>"
     end
+    def initialize( left , right , compare )
+      @left , @right , @compare = left , right , compare
+      @merged , @from_left , @from_right = [] , [] , []
+    end
+    def indexes_from_left(offset)
+      @from_left.map { |i| i + offset } + (0...left.size).map { |i| offset + merged.size + i }
+    end
+    def indexes_from_right(offset)
+      @from_right.map { |i| i + offset } + (0...right.size).map { |i| offset + merged.size + left.size + i }
+    end
+    def sort_iteration
+      return if sorted?
+      merged << extract_next
+    end
+    def sorted?
+      left.empty? && right.empty?
+    end
+    def extract_next
+      if sorted?
+        nil
+      elsif left.empty?
+        extract_right
+      elsif right.empty?
+        extract_left
+      else
+        if compare[ left.first , right.first ] < 0 then extract_left else extract_right end
+      end
+    end
+    def extract_right
+      to_return = right.shift
+      @from_right << merged.size
+      to_return
+    end
+    def extract_left
+      to_return = left.shift
+      @from_left << merged.size
+      to_return
+    end
+    def size
+      left.size + right.size + merged.size
+    end
+  end
+
+  def draw
+    green         = :'#00EE00'
+    darkred       = :'#660000'
+    darkblue      = :'#002C85'
+    blue          = :'#00AEEF'
+    magenta       = :'#F8A1FE'
+    @values       = @sections.map { |s| [ s.merged , s.left , s.right ] }.flatten    
+    offset        = 0
+    left_indexes  = @sections.map { |section| indexes = section.indexes_from_left(offset)  ; offset += section.size ; indexes }.flatten
+    offset        = 0
+    right_indexes = @sections.map { |section| indexes = section.indexes_from_right(offset) ; offset += section.size ; indexes }.flatten 
+    super values.dup , :colors => { magenta => left_indexes , blue => right_indexes }
   end
 
   attr_reader :values , :last , :first
-
-  # four conceptual walls for the indexes in this mergesort
-  # the first and last walls, which are defined in the initialize method
-  # then two more walls, one separating white from red, and one separating red from blue
-  # the white indexes are first, and are the merged sorted results we are returning
-  # then is the red indexes, which are the sorted left half
-  # then the blue indexes, which are the sorted right half
-  # each iteration, we pull the lowest from red/blue and append it to the end of white
-  # then shift any values down as necessary, and repeat until there are no more red/blue
-  def merge( red , blue )
-    return if red==blue || blue==last                     # base case: red or blue are empty
-    if @compare[values[red],values[blue]] <= 0            # first red is less than first blue
-      @always_reds << @initial_reds.shift
-    else                                                  # first blue is less than first red
-      tmp = values[blue]
-      blue.downto(red) { |i| values[i] = values[i-1] }
-      values[red] = tmp
-      blue+=1
-      @initial_reds << @initial_blues.shift
-      @always_blues << @initial_reds.shift
-      draw                                                # lines are moving, so draw the current state as an image
-    end
-    red+=1                                                # red sits in front of blue, so whether we pull from red or blue, red shifts over 1
-    merge( red , blue )
-  end
   
 end
 
