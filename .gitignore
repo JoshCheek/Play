@@ -3,6 +3,10 @@ simple-task/*.yml
 sort-viewer/results**
 sort-viewer/positions
 sort-viewer/*.mp4
+sort-viewer/badge.png
+sort-viewer/badge.psd
+sort-viewer/logo.png
+sort-viewer/logo.psd
 blackboardbot/settings.yaml
 sort-efficiency/results/*.psd
 sort-efficiency/*.out
