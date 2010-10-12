@@ -1,4 +1,25 @@
+About
+=====
+
 The code in these folders is intended for me to keep track of snippets of fun ideas I had, or code experiments I wanted to try. I got the idea from [Wesley Beary](http://github.com/geemus) at Ruby Midwest 2010. He called his prototypes, I call mine play, because I think "prototype" implies more seriousness than mine deserve.
+
+Playgrounds
+===========
+
+* [blackboardbot](http://github.com/JoshCheek/Play/tree/master/blackboardbot/) Script to log onto my school website, check all my forums for new posts, notify me of new posts by text message.
+* [craigslist-watcher](http://github.com/JoshCheek/Play/tree/master/craigslist-watcher/) Script to check my local craigslist free page for the given item (in my case, free computers).
+* [html-consolidated](http://github.com/JoshCheek/Play/tree/master/html-consolidated/) Use gcc's preparser to consolidate content into an html page (such as css and javascript libraries) so you can give someone a single html page with no external dependencies.
+* [mocking-the-internet](http://github.com/JoshCheek/Play/tree/master/mocking-the-internet/) Test libraries that rely on the internet by mocking the internet, and stubbing out various URLs.
+* [physics-lab](http://github.com/JoshCheek/Play/tree/master/physics-lab/) Use the units-system gem to automate all the calculations I would have to do for my Physics lab.
+* [sikulidraw](http://github.com/JoshCheek/Play/tree/master/sikulidraw/) Generate commands for Sikuli such that it draws a picture on the screen, given that the mouse is a 1px pencil.
+* [simple-task](http://github.com/JoshCheek/Play/tree/master/simple-task/) Simple command line task manager.
+* [sort-efficiency](http://github.com/JoshCheek/Play/tree/master/sort-efficiency/) Look at efficiency of mergesort vs insertionsort to see which is faster when.
+* [sort-viewer](http://github.com/JoshCheek/Play/tree/master/sort-viewer/) Render videos of the various sort algorithms ([check out the results](http://vimeo.com/channels/sortalgorithms))
+
+To Do
+=====
+
+* Eventually, once I'm smart enough, figure out how to turn each project into a git submodule. For now, I'm sure I'll destroy all my work if I even try.
 
 ---------------------------------------
 
