@@ -10,7 +10,7 @@ echo "./show-options.rb -arg1 -arg3"
 ./show-options.rb -arg1 -arg3
 echo
 
-echo "SETTIN VARIABLES:"
+echo "SETTING VARIABLES:"
 echo "./show-options.rb -arg2=123 -arg3='abc def' -arg4=./hello-world.rb"
 ./show-options.rb -arg2=123 -arg3='abc def' -arg4=./hello-world.rb
 echo
