@@ -23,7 +23,7 @@ OUTPUT
     $arg3 = true
     $arg4 = nil
 
-    SETTIN VARIABLES:
+    SETTING VARIABLES:
     ./show-options.rb -arg2=123 -arg3='abc def' -arg4=./hello-world.rb
     $arg1 = nil
     $arg2 = "123"
