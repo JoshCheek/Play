@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-EXECUTABLE=$(cd $(dirname $0); pwd -P)
-cd $EXECUTABLE
+cd $(cd $(dirname $0); pwd -P)
 
 echo "Showing what the script sees for \$arg1, \$arg2, \$arg3, \$arg4"
 echo
