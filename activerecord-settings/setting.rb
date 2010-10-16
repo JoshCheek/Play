@@ -7,10 +7,13 @@ class Setting < ActiveRecord::Base
   MAX_NAME     = 30       # characters long
   InvalidName  = Class.new Exception
   
-  validates_uniqueness_of :name
+  # on 2.3.8, if this throws a lot of warnings
+  # you can get around it with
+  # gem uninstall i18n
+  # gem install i18n -v 0.3.7
+  validates_uniqueness_of :name 
   
   def self.[]( name , default=DEFAULT )
-    validate_name name
     setting name do |setting|
       setting.value = default unless setting.value_initialized?
       setting.value
@@ -25,6 +28,8 @@ class Setting < ActiveRecord::Base
   
   # returns the result of the block
   def self.setting(name)
+    validate_name name
+    name = name.to_s
     setting = find_by_name(name) || new( :name => name )
     result  = yield setting
     setting.save! if setting.changed?

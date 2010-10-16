@@ -50,6 +50,13 @@ class TestSettingModel < Test::Unit::TestCase
     assert_raises Setting::InvalidName , &block
   end
   
+  context 'sanity check' do
+    # works on 3.0.0 too, but my target was 2.3.8, so I want to check for it explicitly
+    verify 'works on 2.3.8' do
+      assert_equal '2.3.8' , ActiveRecord::VERSION::STRING
+    end
+  end
+  
   context 'validations' do
     verify 'does not allow duplicate names' do
       assert_count 0
