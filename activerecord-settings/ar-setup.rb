@@ -8,8 +8,9 @@ ActiveRecord::Base.establish_connection :adapter => 'sqlite3' , :database => ":m
 class CreateSettings < ActiveRecord::Migration
   def self.up
     create_table :settings do |t|
-      t.text :name
-      t.text :value
+      t.string  :name  , :null => false , :size => 30
+      t.text    :value
+      t.timestamps
     end
   end
 end
