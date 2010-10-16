@@ -7,7 +7,7 @@ Tested on ActiveRecord 2.38, implements a class that stores settings in the db.
 Usage
 =====
 
-    ./setting.rb
+    ./test.rb
 
 
 Dependencies
