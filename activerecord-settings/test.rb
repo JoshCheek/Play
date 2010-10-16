@@ -130,9 +130,9 @@ class TestSettingModel < Test::Unit::TestCase
   context 'setting' do
     
     verify "creates a new setting when one doesn't exist" do
-      assert_equal 0 , Setting.count
+      assert_count 0
       Setting[:abc] = 1
-      assert_equal 1 , Setting.count
+      assert_count 1
     end
     
     verify 'changes the value of the setting' do
