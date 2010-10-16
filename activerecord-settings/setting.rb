@@ -1,6 +1,5 @@
 require File.dirname(__FILE__) + '/ar-setup'
 
-# code to make the tests pass
 class Setting < ActiveRecord::Base
 
   DEFAULT      = false    # default value
@@ -26,7 +25,6 @@ class Setting < ActiveRecord::Base
     end
   end
   
-  # returns the result of the block
   def self.setting(name)
     validate_name name
     name = name.to_s
@@ -73,27 +71,4 @@ private
   end
     
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
