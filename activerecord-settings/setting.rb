@@ -17,6 +17,10 @@ class CreateSettings < ActiveRecord::Migration
 end
 CreateSettings.migrate :up
 
+class Setting
+  
+end
+
 
 # run the unit tests
 class TestSettingModel < Test::Unit::TestCase
@@ -29,15 +33,20 @@ class TestSettingModel < Test::Unit::TestCase
     @context = to_method_name(context)
   end
   
-  def self.verify( to_verify , &verification )
-    prefix = "test_"
-    prefix << @context << '_' if @context && !context.empty?
-    define_method prefix << to_method_name(to_verify) , &verification
+  def self.clear_context
+    context ''
   end
   
+  def self.verify( to_verify , &verification )
+    prefix = "test_"
+    prefix << @context << '_' if @context && !@context.empty?
+    define_method prefix << to_method_name(to_verify) , &verification
+  end
+    
   context 'querying'
   verify 'if setting DNE, should create it' do
     assert_equal 0 , Setting.count
     
   end
+  
 end
