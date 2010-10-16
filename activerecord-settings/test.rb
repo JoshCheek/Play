@@ -63,17 +63,17 @@ class TestSettingModel < Test::Unit::TestCase
   context 'querying' do
   
     verify "creates a setting when it doesn't exist" do
-      assert_equal 0 , Setting.count
+      assert_count 0
       Setting[:abc]
-      assert_equal 1 , Setting.count
+      assert_count 1
     end
   
     verify "doesn't create a setting when it exists" do
-      assert_equal 0 , Setting.count
+      assert_count 0
       Setting[:abc]
-      assert_equal 1 , Setting.count
+      assert_count 1
       Setting[:abc]
-      assert_equal 1 , Setting.count
+      assert_count 1
     end
     
     verify 'returns the value' do
