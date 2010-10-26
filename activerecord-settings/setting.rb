@@ -67,7 +67,7 @@ private
   
   def self.validate_name(name)
     raise InvalidName.new("#{name.inspect} is not a String or Symbol.") unless name.kind_of?(String) || name.kind_of?(Symbol)
-    raise InvalidName.new("#{name} is too long, cannot be more than #{MAX_NAME} characters.") if name.length > MAX_NAME
+    raise InvalidName.new("#{name} is too long, cannot be more than #{MAX_NAME} characters.") if name.to_s.length > MAX_NAME
   end
     
 end
