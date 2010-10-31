@@ -2,7 +2,23 @@ Description
 ===========
 
 [Quines](http://en.wikipedia.org/wiki/Quine_%28computing%29) in various programming languages.
-    
+
+quine.c    
+-------
+Uses trick where you can specify which argument a parameter in the string should pull from in order to reuse printf arguments to construct a template within the C program.
+
+quine.cat
+---------
+Wasn't actually my idea, but was very smart, so I wanted to put it here. Got it from [this post](http://www.skorks.com/2010/03/an-interview-question-that-prints-out-its-own-source-code-in-ruby/#comment-4031)
+
+quine1.rb
+---------
+Same as the C version, but for Ruby
+
+quine2.rb
+---------
+This is possibly considered cheating :P
+
 
 ---------------------------------------
 
