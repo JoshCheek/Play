@@ -18,18 +18,21 @@ module Itinerary
     end
     
     def to(type)
-      case type
-      when :text
-        [ yield,
-          todo.map do |task|
-            result = task.to type
-            if result.is_a? String
-              "  #{result}"
-            else
-              result.map { |line| "  #{line}" }
-            end
-          end
-        ].flatten
+      [ yield ,
+        case type
+        when :text then to_text
+        end
+      ].flatten
+    end
+    
+    def to_text
+      todo.map do |task|
+        result = task.to :text
+        if result.is_a? String
+          "  #{result}"
+        else
+          result.map { |line| "  #{line}" }
+        end
       end
     end
     
