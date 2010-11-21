@@ -18,11 +18,7 @@ module Itinerary
     end
     
     def to(type)
-      [ yield ,
-        case type
-        when :text then to_text
-        end
-      ].flatten
+      [ yield , send("to_#{type}") ].flatten
     end
     
     def to_text
