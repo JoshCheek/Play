@@ -4,12 +4,15 @@ module Itinerary
     include Nestable
     
     def initialize(topic)
-      @topic = topic
       super
+      @topic = topic
     end
     
     def to(type)
-      "DISCUSS: #{@topic}"
+      case type
+      when :text
+        super { "DISCUSS: #{@topic}" }
+      end
     end
     
   end

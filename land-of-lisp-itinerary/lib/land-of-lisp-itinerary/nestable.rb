@@ -33,5 +33,21 @@ module Itinerary
       todo << LiveCode.new(to_code)
     end
     
+    def to(type)
+      case type
+      when :text
+        [ yield,
+          todo.map do |task|
+            result = task.to type
+            if result.is_a? String
+              "  #{result}"
+            else
+              result.map { |line| "  #{line}" }
+            end
+          end
+        ].flatten
+      end
+    end
+    
   end
 end

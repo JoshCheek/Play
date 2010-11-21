@@ -9,7 +9,10 @@ module Itinerary
     end
     
     def to(type)
-      "COMPLETE: #{@task}"
+      case type
+      when :text
+        super { "COMPLETE: #{@task}" }
+      end
     end
     
   end

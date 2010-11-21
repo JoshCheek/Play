@@ -11,7 +11,7 @@ module Itinerary
     def to(type)
       case type
       when :text
-        "LIVE CODE: #{@to_code}"
+        super { "LIVE CODE: #{@to_code}" }
       end
     end
     
