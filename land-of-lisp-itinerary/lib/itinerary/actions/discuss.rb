@@ -9,11 +9,8 @@ class  Discuss
     @topic = topic
   end
   
-  def to(type)
-    case type
-    when :text
-      super { "DISCUSS: #{@topic}" }
-    end
+  def to_s
+    "DISCUSS: #{@topic}"
   end
     
 end end end

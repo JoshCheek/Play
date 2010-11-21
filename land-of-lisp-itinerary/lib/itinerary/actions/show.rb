@@ -9,11 +9,8 @@ class  Show
     @to_show = shiny_thing
   end
 
-  def to(type)
-    case type
-    when :text
-      "SHOW: #{@to_show}"
-    end
+  def to_s
+    "SHOW: #{@to_show}"
   end
 
 end end end

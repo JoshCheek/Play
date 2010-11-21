@@ -18,12 +18,17 @@ module Itinerary
       @definitions ||= Hash.new
     end
     
-    def to(type)
-      [ "HEADER: ",
-        "  DESCRIPTION: #{@description}",
-        @definitions.map { |key,value| "  #{key.upcase}: #{value}" }
-      ].flatten
+    def children
+      @definitions
     end
     
+    def description
+      @description
+    end
+    
+    def to_s
+      "HEADER:"
+    end
+       
   end
 end

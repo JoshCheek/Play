@@ -16,10 +16,10 @@ task :text => :load do
   if to_file
     mkdir_p "#{file}/output/text" 
     File.open "#{file}/output/text/itinerary.txt" , 'w' do |f|
-      f.puts Itinerary.to(:text)
+      f.puts Itinerary.to_text
     end
   else
-    puts Itinerary.to(:text)
+    puts Itinerary.to_text
   end
 end
 
@@ -28,10 +28,10 @@ task :html => :load do
   if to_file
     mkdir_p "#{file}/output/html"
     File.open "#{file}/output/html/itinerary.html" , 'w' do |f|
-      f.puts Itinerary.to(:html)
+      f.puts Itinerary.to_html
     end
   else
-    puts Itinerary.to(:html)
+    puts Itinerary.to_html
   end
 end
 

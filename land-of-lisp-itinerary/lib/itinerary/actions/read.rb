@@ -13,11 +13,8 @@ class  Read
     @title = title.keys.first
   end
 
-  def to(type)
-    case type
-    when :text
-      super { "READ #{@title.inspect} (#{@pages}):" }
-    end
+  def to_s
+    "READ #{@title.inspect} (#{@pages}):"
   end
       
   def todo

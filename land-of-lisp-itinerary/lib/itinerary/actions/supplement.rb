@@ -8,11 +8,8 @@ class  Supplement
     @task = task
   end
   
-  def to(type)
-    case type
-    when :text
-      "SUPPLEMENT: #{@task}"
-    end
+  def to_s
+    "SUPPLEMENT: #{@task}"
   end
   
 end end end

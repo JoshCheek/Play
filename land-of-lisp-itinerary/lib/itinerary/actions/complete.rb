@@ -9,11 +9,8 @@ class  Complete
     @task = task
   end
 
-  def to(type)
-    case type
-    when :text
-      super { "COMPLETE: #{@task}" }
-    end
+  def to_s
+    "COMPLETE: #{@task}"
   end
     
 end end end

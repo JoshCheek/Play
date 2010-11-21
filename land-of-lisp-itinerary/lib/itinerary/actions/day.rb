@@ -13,11 +13,8 @@ class  Day
     @todo ||= Array.new
   end
 
-  def to(type)
-    case type
-    when :text
-      super { "DUE: #{@date.upcase}:" }
-    end
+  def to_s
+    "DUE: #{@date.upcase}:"
   end
   
 end end end

@@ -9,11 +9,8 @@ class  LiveCode
     @to_code = to_code
   end
   
-  def to(type)
-    case type
-    when :text
-      super { "LIVE CODE: #{@to_code}" }
-    end
+  def to_s
+    "LIVE CODE: #{@to_code}"
   end
   
 end end end

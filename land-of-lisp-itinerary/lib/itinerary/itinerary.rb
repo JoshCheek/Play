@@ -2,8 +2,12 @@ module Itinerary
 
   extend self
     
-  def to(type)
-    days.map { |day| day.to type }.join("\n")
+  def to_text
+    Formatters::Text.format(@days).join("\n")
+  end
+  
+  def to_html
+    Formatters::HTML.format(@days).join("\n")
   end
   
   def by(date,&definition)
