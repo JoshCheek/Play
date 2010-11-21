@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 chapters = {
   "Introduction" => 1,
   # SECTION II: LISP IS POWER

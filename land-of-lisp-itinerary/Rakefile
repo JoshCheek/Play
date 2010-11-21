@@ -1,0 +1,5 @@
+task :default do
+  require File.dirname(__FILE__) + '/lib/land-of-lisp-itinerary'
+  FileList["#{File.dirname(__FILE__)}/days/*.rb"].each { |filename| require filename }
+  puts Itinerary.to :text
+end
