@@ -14,5 +14,9 @@ module Itinerary
     @days ||= Array.new
   end
   
+  def header(title,&definition)
+    days.unshift Header.new(title,&definition)
+  end
+  
 end
 

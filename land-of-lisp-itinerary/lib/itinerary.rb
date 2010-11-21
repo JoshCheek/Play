@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/itinerary/itinerary'
 require File.dirname(__FILE__) + '/itinerary/nestable'
+require File.dirname(__FILE__) + '/itinerary/header'
 require File.dirname(__FILE__) + '/itinerary/actions/complete'
 require File.dirname(__FILE__) + '/itinerary/actions/day'
 require File.dirname(__FILE__) + '/itinerary/actions/discuss'
@@ -12,3 +13,6 @@ def by(date,&block)
   Itinerary.by date , &block
 end
 
+def header(title,&block)
+  Itinerary.header title , &block
+end
