@@ -13,7 +13,7 @@ module Itinerary
     %w( read discuss complete supplement show live_code! ).each do |action|
       define_method action do |*args,&block|
         klass_name = action.split(/[^a-zA-Z]/).map(&:capitalize).join
-        todo << Itinerary.const_get(klass_name).new(*args,&block)
+        todo << Itinerary::Actions.const_get(klass_name).new(*args,&block)
       end
     end
     

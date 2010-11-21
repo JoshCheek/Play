@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/land-of-lisp-itinerary/nestable'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/complete'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/day'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/discuss'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/live_code'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/read'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/show'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/supplement'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/actions/complete'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/actions/day'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/actions/discuss'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/actions/live_code'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/actions/read'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/actions/show'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/actions/supplement'
 
 def by(date,&block)
   Itinerary.by date , &block
@@ -21,7 +21,7 @@ module Itinerary
   end
   
   def by(date,&definition)
-    days << Day.new(date,&definition)
+    days << Actions::Day.new(date,&definition)
   end
   
   def days
