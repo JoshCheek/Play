@@ -1,7 +1,10 @@
 module Itinerary
   class Complete
     
+    include Nestable
+    
     def initialize(task)
+      super
       @task = task
     end
     

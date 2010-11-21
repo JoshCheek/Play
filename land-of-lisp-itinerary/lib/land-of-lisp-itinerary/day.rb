@@ -1,23 +1,17 @@
 module Itinerary
   class Day
+    
+    include Nestable
   
-    def initialize(date,&definition)
-      self.date = date
-      instance_eval(&definition)
+    def initialize(date)
+      super
+      @date = date
     end
   
     def read(title,&followup)
       todo << Reading.new(title,&followup)
     end
-  
-    def date=(date)
-      @date = date
-    end
-  
-    def date
-      @date
-    end
-  
+    
     def todo
       @todo ||= Array.new
     end
@@ -25,7 +19,7 @@ module Itinerary
     def to(type)
       case type
       when :text
-        [ "DUE: #{date.upcase}:",
+        [ "DUE: #{@date.upcase}:",
           todo.map do |task| 
             result = task.to type
             if result.is_a? String
