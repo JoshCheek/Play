@@ -6,6 +6,8 @@ Some code to use to generate the itinerary for going through the book [Land of L
 Usage
 =====
 
+Using Ruby ≥ 1.8.7
+
     rake
 
 ---------------------------------------
