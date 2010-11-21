@@ -1,11 +1,38 @@
-task :default do
-  file = File.dirname(__FILE__)
+file    = File.dirname(__FILE__)  
+to_file = true
+
+task :load do
   require "#{file}/lib/itinerary"
-  FileList["#{file}/days/*.rb"].each { |filename| require filename }
-  mkdir_p "#{file}/output"
-  File.open "#{file}/output/itinerary.txt" , 'w' do |f|
-    f.puts Itinerary.to(:text)
-  end
-  
-  # puts Itinerary.to :html
+  FileList["#{file}/days/*.rb"].each { |filename| require filename }  
 end
+
+desc 'modifier to send output to screen rather than file'
+task :to_screen do
+  to_file = false
+end
+
+desc 'generate the output in text format'
+task :text => :load do
+  if to_file
+    mkdir_p "#{file}/output/text" 
+    File.open "#{file}/output/text/itinerary.txt" , 'w' do |f|
+      f.puts Itinerary.to(:text)
+    end
+  else
+    puts Itinerary.to(:text)
+  end
+end
+
+desc 'generate the output in html format'
+task :html => :load do
+  if to_file
+    mkdir_p "#{file}/output/html"
+    File.open "#{file}/output/html/itinerary.html" , 'w' do |f|
+      f.puts Itinerary.to(:html)
+    end
+  else
+    puts Itinerary.to(:html)
+  end
+end
+
+task :default => [ :text , :html ]
