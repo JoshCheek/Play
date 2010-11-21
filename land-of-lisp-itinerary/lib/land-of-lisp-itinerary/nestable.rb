@@ -9,28 +9,12 @@ module Itinerary
       @todo ||= Array.new
     end
     
-    def read(title,&followup)
-      todo << Read.new(title,&followup)
-    end
-  
-    def discuss(topic)
-      todo << Discuss.new(topic)
-    end
-    
-    def complete(task)
-      todo << Complete.new(task)
-    end
-    
-    def supplement(task)
-      todo << Supplement.new(task)
-    end
-    
-    def show(shiny_thing)
-      todo << Show.new(shiny_thing)
-    end
-    
-    def live_code!(to_code)
-      todo << LiveCode.new(to_code)
+    # define the action methods
+    %w( read discuss complete supplement show live_code! ).each do |action|
+      define_method action do |*args,&block|
+        klass_name = action.split(/[^a-zA-Z]/).map(&:capitalize).join
+        todo << Itinerary.const_get(klass_name).new(*args,&block)
+      end
     end
     
     def to(type)
