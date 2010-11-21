@@ -29,5 +29,9 @@ module Itinerary
       todo << Show.new(shiny_thing)
     end
     
+    def live_code!(to_code)
+      todo << LiveCode.new(to_code)
+    end
+    
   end
 end
