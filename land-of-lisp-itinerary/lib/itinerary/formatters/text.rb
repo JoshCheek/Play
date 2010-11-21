@@ -5,7 +5,7 @@ module Itinerary
       def self.format( nodes=[] , result=[] , depth=0 )
         result << format_header(nodes.shift) if nodes.first.kind_of?(Itinerary::Header)
         nodes.each do |node|
-          result << "#{' '*depth}#{node}"
+          result << "#{'  '*depth}#{node}"
           format node.children, result , depth.next
         end
         result.flatten
