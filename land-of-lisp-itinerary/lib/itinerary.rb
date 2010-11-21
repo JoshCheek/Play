@@ -1,0 +1,14 @@
+require File.dirname(__FILE__) + '/itinerary/itinerary'
+require File.dirname(__FILE__) + '/itinerary/nestable'
+require File.dirname(__FILE__) + '/itinerary/actions/complete'
+require File.dirname(__FILE__) + '/itinerary/actions/day'
+require File.dirname(__FILE__) + '/itinerary/actions/discuss'
+require File.dirname(__FILE__) + '/itinerary/actions/live_code'
+require File.dirname(__FILE__) + '/itinerary/actions/read'
+require File.dirname(__FILE__) + '/itinerary/actions/show'
+require File.dirname(__FILE__) + '/itinerary/actions/supplement'
+
+def by(date,&block)
+  Itinerary.by date , &block
+end
+
