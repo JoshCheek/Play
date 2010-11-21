@@ -7,4 +7,9 @@ by 'Dec 22' do
     show        "your supplemented version of the game"
   end
   
+  discuss "your progress so far"
+  discuss "difficulties"
+  discuss "accomplishments"
+  discuss 'moments of "ah hah!"'
+  
 end
