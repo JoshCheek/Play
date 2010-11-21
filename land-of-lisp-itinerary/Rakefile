@@ -1,5 +1,11 @@
 task :default do
-  require File.dirname(__FILE__) + '/lib/itinerary'
-  FileList["#{File.dirname(__FILE__)}/days/*.rb"].each { |filename| require filename }
-  puts Itinerary.to :text
+  file = File.dirname(__FILE__)
+  require "#{file}/lib/itinerary"
+  FileList["#{file}/days/*.rb"].each { |filename| require filename }
+  mkdir_p "#{file}/output"
+  File.open "#{file}/output/itinerary.txt" , 'w' do |f|
+    f.puts Itinerary.to(:text)
+  end
+  
+  # puts Itinerary.to :html
 end
