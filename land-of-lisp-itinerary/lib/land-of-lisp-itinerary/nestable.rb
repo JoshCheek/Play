@@ -10,7 +10,7 @@ module Itinerary
     end
     
     def read(title,&followup)
-      todo << Reading.new(title,&followup)
+      todo << Read.new(title,&followup)
     end
   
     def discuss(topic)

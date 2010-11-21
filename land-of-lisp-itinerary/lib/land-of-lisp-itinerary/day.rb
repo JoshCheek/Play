@@ -7,10 +7,6 @@ module Itinerary
       super
       @date = date
     end
-  
-    def read(title,&followup)
-      todo << Reading.new(title,&followup)
-    end
     
     def todo
       @todo ||= Array.new

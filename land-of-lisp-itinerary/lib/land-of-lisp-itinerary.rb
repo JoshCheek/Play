@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/land-of-lisp-itinerary/complete'
 require File.dirname(__FILE__) + '/land-of-lisp-itinerary/day'
 require File.dirname(__FILE__) + '/land-of-lisp-itinerary/discuss'
 require File.dirname(__FILE__) + '/land-of-lisp-itinerary/live_code'
-require File.dirname(__FILE__) + '/land-of-lisp-itinerary/reading'
+require File.dirname(__FILE__) + '/land-of-lisp-itinerary/read'
 require File.dirname(__FILE__) + '/land-of-lisp-itinerary/show'
 require File.dirname(__FILE__) + '/land-of-lisp-itinerary/supplement'
 

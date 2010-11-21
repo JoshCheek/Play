@@ -1,5 +1,5 @@
 module Itinerary
-  class Reading
+  class Read
     
     include Nestable
     
