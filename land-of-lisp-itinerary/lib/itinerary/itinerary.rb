@@ -6,8 +6,8 @@ module Itinerary
     Formatters::Text.format(@days.dup)
   end
   
-  def to_simple_html(out)
-    out.puts Formatters::SimpleHTML.format(@days.dup)
+  def to_simple_html
+    Formatters::SimpleHTML.format(@days.dup)
   end
   
   def by(date,&definition)

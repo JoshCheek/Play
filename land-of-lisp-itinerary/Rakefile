@@ -6,7 +6,7 @@ task :load do
   FileList["#{dir}/days/*.rb"].each { |filename| require filename }  
 end
 
-desc 'modifier to send output to screen rather than file'
+desc 'send output to screen rather than file -- works on text and html:simple'
 task :to_screen do
   to_file = false
 end
@@ -28,16 +28,19 @@ namespace :html do
   desc 'generate the output in simple html format'
   task :simple => :load do
     if to_file
-      mkdir_p "#{dir}/output/html"
+      mkdir_p "#{dir}/output/simple_html"
       cp_r    "#{dir}/data/itinerary/html/simple/public" , "#{dir}/output/simple_html"
       File.open "#{dir}/output/simple_html/itinerary.html" , 'w' do |f|
-        Itinerary.to_simple_html(f)
+        f.puts Itinerary.to_simple_html
       end
     else
-      puts Itinerary.to_simple_html($stdout)
+      puts Itinerary.to_simple_html
     end
   end
 
 end
 
+task :clobber do
+  rm_rf "#{dir}/output"
+end
 task :default => [ :text , 'html:simple' ]
