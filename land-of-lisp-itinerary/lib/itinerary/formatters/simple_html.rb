@@ -1,6 +1,6 @@
 module Itinerary
   module Formatters
-    class  HTML
+    class  SimpleHTML
       
       
       def self.format( nodes=[] , result=[] , depth=0 , container_type='days' )

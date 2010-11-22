@@ -9,7 +9,7 @@ require File.dirname(__FILE__) + '/itinerary/actions/read'
 require File.dirname(__FILE__) + '/itinerary/actions/show'
 require File.dirname(__FILE__) + '/itinerary/actions/supplement'
 require File.dirname(__FILE__) + '/itinerary/formatters/text'
-require File.dirname(__FILE__) + '/itinerary/formatters/html'
+require File.dirname(__FILE__) + '/itinerary/formatters/simple_html'
 
 def by(date,&block)
   Itinerary.by date , &block
