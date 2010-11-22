@@ -3,16 +3,17 @@ module Itinerary
     class  HTML
       
       
-      def self.format( nodes=[] , result=[] , depth=0 )
+      def self.format( nodes=[] , result=[] , depth=0 , container_type='days' )
         result << html_headers(nodes)         if depth.zero?
         result << format_header(nodes.shift)  if nodes.first.kind_of?(Itinerary::Header)
-        result << "      #{' '*depth*2}<ul>"
+        result << "      #{' '*depth*2}<ul class='depth-#{depth} type-#{container_type}'>"
         nodes.each do |node|
+          type = node.class.to_s.split('::').last.downcase
           if node.children.empty?
-            result << "      #{' '*depth*2}  <li>#{node}</li>"
+            result << "      #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{node}</li>"
           else
-            result << "    #{' '*depth*2}  <li>#{node}"
-            format node.children, result , depth.next
+            result << "    #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{node}"
+            format node.children, result , depth.next , type
             result << "    #{' '*depth*2}  </li>"
           end
         end
