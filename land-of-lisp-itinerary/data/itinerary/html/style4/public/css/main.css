@@ -218,3 +218,9 @@ ul li {
 	font-size: 15px;
 	color: #8a8a8a;
 }
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0px 0px 20px 20px;
+}
