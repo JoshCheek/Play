@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/itinerary/nestable'
 require File.dirname(__FILE__) + '/itinerary/header'
 
 require File.dirname(__FILE__) + '/itinerary/actions/complete'
+require File.dirname(__FILE__) + '/itinerary/actions/comment'
 require File.dirname(__FILE__) + '/itinerary/actions/day'
 require File.dirname(__FILE__) + '/itinerary/actions/discuss'
 require File.dirname(__FILE__) + '/itinerary/actions/live_code'

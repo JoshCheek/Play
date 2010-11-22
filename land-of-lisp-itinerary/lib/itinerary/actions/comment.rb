@@ -1,16 +1,16 @@
 module Itinerary
 module Actions
-class  Supplement
+class  Comment
   
   include Nestable
   
-  def initialize(task)
+  def initialize(comment)
     super
-    @task = task
+    @comment = comment
   end
   
   def to_s
-    "SUPPLEMENT: #{@task}"
+    "COMMENT: #{@comment}"
   end
   
 end end end
