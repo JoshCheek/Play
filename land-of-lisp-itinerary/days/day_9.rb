@@ -11,9 +11,9 @@ by 'Jan 5' do
   end
   
   read "Ramping Lisp up a notch with functional programming" => 291-302 do  
-    discussion "is functional programming the future?"
-    discussion "what are your thoughts about functional programming?"
-    discussion "what are drawbacks of functional programming?"
+    discuss "is functional programming the future?"
+    discuss "what are your thoughts about functional programming?"
+    discuss "what are drawbacks of functional programming?"
   end
   
 end
