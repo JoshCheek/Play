@@ -51,4 +51,4 @@ end
 task :clobber do
   rm_rf "#{dir}/output"
 end
-task :default => [ :text , 'html:simple' ]
+task :default => [ :text , 'html:simple' , 'html:style4' ]
