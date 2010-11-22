@@ -7,7 +7,7 @@ module Itinerary
     end
     
     def describe(description)
-      @description = description
+      @description = description.split("\n").map(&:strip).join(' ')
     end
     
     def define(definition)
@@ -27,8 +27,10 @@ module Itinerary
     end
     
     def to_s
-      "HEADER:"
+      "HEADER: #{title}"
     end
+    
+    attr_reader :title
        
   end
 end
