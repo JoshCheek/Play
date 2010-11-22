@@ -27,6 +27,7 @@ desc 'generate the output in html format'
 task :html => :load do
   if to_file
     mkdir_p "#{dir}/output/html"
+    cp_r    "#{dir}/data/itinerary/html/public" , "#{dir}/output/html"
     File.open "#{dir}/output/html/itinerary.html" , 'w' do |f|
       f.puts Itinerary.to_html
     end

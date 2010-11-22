@@ -33,6 +33,7 @@ module Itinerary
           <head>
             <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
             <title>#{title}</title>
+            <link rel="stylesheet" href="public/css/itinerary.css" type="text/css" media="screen" />
           </head>
           <body>        
         HEADER
