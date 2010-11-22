@@ -42,17 +42,16 @@ class  Style4HTML
     			
           <!-- definition lists -->
     			<div class="contentHeader">
-            <dl>
-              <% @header.definitions.each do |key,value| %>
-                <dt><%= key.upcase %></dt>
-                <dd><%= value %></dd>
-              <% end %>
-            </dl>
     			</div>
     			
     			<div class="contentMiddle clear">
             <div class="leftContent">
-    					<div class="smiley"></div>
+              <dl>
+                <% @header.definitions.each do |key,value| %>
+                  <dt><%= key.upcase %></dt>
+                  <dd><%= value %></dd>
+                <% end %>
+              </dl>
     				</div>
     				
             <!-- main content goes here -->
