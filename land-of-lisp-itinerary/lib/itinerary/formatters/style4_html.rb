@@ -3,66 +3,112 @@ module Formatters
 class  Style4HTML
 
   def initialize(root_dir,nodes)
-    @root_dir = root_dir
-    @nodes = nodes
+    require 'erb'
+    @root_dir  =  root_dir
+    @header    =  nodes.shift
+    @days      =  nodes
   end
   
   def format!
-    File.open "#{@root_dir}/itinerary.html" , 'w' do |f|
-      f.puts format
+    File.open "#{@root_dir}/index.html" , 'w' do |f|
+      f.puts content
+    end
+    @days.each do |day|
+      File.open "#{@root_dir}/#{day_to_url day}" , 'w' do |f|
+        f.puts( content day )
+      end
     end
   end
   
-  def format( nodes=@nodes , result=[] , depth=0 , container_type='days' )
-    result << html_headers(nodes)         if depth.zero?
-    result << format_header(nodes.shift)  if nodes.first.kind_of?(Itinerary::Header)
-    result << "      #{' '*depth*2}<ul class='depth-#{depth} type-#{container_type}'>"
+  def content(day=nil)
+    ERB.new(<<-END_OF_HTML.gsub(/^ {8}/,'')).result(binding)
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    	<head>
+    		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    		<% if day %>
+          <title><%= @header.title %> - <%= day %></title>
+        <% else %>
+          <title><%= @header.title %></title>
+        <% end %>
+    		<script type="text/javascript" src="resources/js/jquery.js"></script>
+    		<script type="text/javascript" src="resources/js/main.js"></script>
+    		<link rel="stylesheet" href="public/css/main.css" />
+    	</head>
+      <body>
+    		<div class="container">
+          
+    			<!-- <div class="errorLabel"></div> -->
+    			
+          <!-- definition lists -->
+    			<div class="contentHeader">
+            <dl>
+              <% @header.definitions.each do |key,value| %>
+                <dt><%= key.upcase %></dt>
+                <dd><%= value %></dd>
+              <% end %>
+            </dl>
+    			</div>
+    			
+    			<div class="contentMiddle clear">
+            <div class="leftContent">
+    					<div class="smiley"></div>
+    				</div>
+    				
+            <!-- main content goes here -->
+    				<div class="rightContent">
+              <% if day %>
+                <%= format_children day.children %>
+              <% else %>
+              <!-- for index page -->
+                <h1><%= @header %></h1>
+                <p><%= @header.description %></p>
+              <% end %>
+            </div>
+            
+            
+          </div>
+    			<div class="contentFooter"></div>
+          <!-- links to other days -->
+    			<div class="footerMenu">
+      			<ul>
+      			  <li><a href="index.html">Home</a></li>
+      			  <% @days.each do |day| %>
+            	  <li>
+            	    <a href='<%= day_to_url day %>'>
+            	      <%= day.to_s.gsub(/\s+/,'') %>
+            	    </a>
+            	  </li>
+          	  <% end %>
+        	  </ul>
+    			</div>
+        </div>
+      </body>
+    </html>
+    END_OF_HTML
+  end
+    
+  def day_to_url(day)
+    day.to_s.strip.gsub(/\s+/,'-') << '.html'
+  end
+  
+  def format_children( nodes=[] , result=[] , depth=0 , container_type='day' )
+    return [] if nodes.empty?
+    result << "<ul class='depth-#{depth} type-#{container_type}'>"
     nodes.each do |node|
       type = node.class.to_s.split('::').last.downcase
       if node.children.empty?
-        result << "      #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{node}</li>"
+        result << "<li class='depth-#{depth} type-#{type}'>#{node}</li>"
       else
-        result << "    #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{node}"
-        format node.children, result , depth.next , type
-        result << "    #{' '*depth*2}  </li>"
+        result << "<li class='depth-#{depth} type-#{type}'>#{node}"
+        format_children node.children , result , depth.next , type
+        result << "</li>"
       end
     end
-    result << "      #{' '*depth*2}</ul>"
-    result << html_footers      if depth.zero?
+    result << "</ul>"
     result.flatten!             if depth.zero?
     result = result.join("\n")  if depth.zero?
     result
   end
   
-  def html_headers(nodes)
-    title = "Itinerary"
-    title = nodes.first.title if nodes.first.kind_of?(Itinerary::Header)
-    <<-HEADER.gsub(/^ {8}/,'')
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
-      <head>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <title>#{title}</title>
-        <link rel="stylesheet" href="public/css/main.css" type="text/css" media="screen" />
-      </head>
-      <body>        
-    HEADER
-  end
-  
-  def html_footers
-    <<-HEADER.gsub(/^ {8}/,'')
-      </body>
-    </html>
-    HEADER
-  end
-  
-  def format_header(header)
-    [ "    <h1>#{header}</h1>",
-      "    <p>#{header.description}</p>",
-      "    <dl>",
-      header.definitions.map { |key,value| "      <dt>#{key.upcase}</dt><dd>#{value}</dd>" },
-      "    </dl>",
-    ].flatten
-  end
-      
 end end end

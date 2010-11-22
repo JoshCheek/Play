@@ -14,7 +14,7 @@ class  Day
   end
 
   def to_s
-    "DUE: #{@date.upcase}:"
+    @date.dup
   end
   
 end end end
