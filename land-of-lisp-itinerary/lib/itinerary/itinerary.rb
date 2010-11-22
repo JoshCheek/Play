@@ -3,11 +3,11 @@ module Itinerary
   extend self
     
   def to_text
-    Formatters::Text.format(@days)
+    Formatters::Text.format(@days.dup)
   end
   
-  def to_html
-    Formatters::HTML.format(@days)
+  def to_simple_html(out)
+    out.puts Formatters::SimpleHTML.format(@days.dup)
   end
   
   def by(date,&definition)
