@@ -80,7 +80,6 @@ a:active {
 .space30 { height: 30px; }
 h1 {
 	font-size: 64px;
-	color: #8c8c8c;
 	letter-spacing: -4px;
 	margin-bottom: -8px;
 }
@@ -92,7 +91,6 @@ h3 {
 }
 p {
 	font-size: 15px;
-	color: #5c5c5c;
 	margin: 25px 0;
 }
 .container {
@@ -225,13 +223,21 @@ ul {
   list-style-type:  none;
 }
 
-.type-discuss     { background-color: #F49AC2;  margin: 3px;  padding: 5px; color:black; } /*Pastel Magenta*/
-.type-read        { background-color: #C4DF9B;  margin: 3px;  padding: 5px; color:black; } /*Pastel Pea Green*/
-.type-comment     { background-color: #8493CA;  margin: 3px;  padding: 5px; color:black; } /*Pastel Blue*/
-.type-complete    { background-color: #A187BE;  margin: 3px;  padding: 5px; color:black; } /*Pastel Violet*/
-.type-livecode    { background-color: #6ECFF6;  margin: 3px;  padding: 5px; color:black; } /*Pastel Cyan*/
-.type-show        { background-color: #FDC68A;  margin: 3px;  padding: 5px; color:black; } /*Pastel Yellow Orange*/
-.type-supplement  { background-color: #F7977A;  margin: 3px;  padding: 5px; color:black; } /*Pastel Red*/
+.homePage {
+  background: url(../img/lisp_alien2.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.container { color: black; }
+
+.type-discuss     { background-color: #F49AC2;  margin: 3px;  padding: 5px; } /*  Pastel Magenta        */
+.type-read        { background-color: #C4DF9B;  margin: 3px;  padding: 5px; } /*  Pastel Pea Green      */
+.type-comment     { background-color: #8493CA;  margin: 3px;  padding: 5px; } /*  Pastel Blue           */
+.type-complete    { background-color: #A187BE;  margin: 3px;  padding: 5px; } /*  Pastel Violet         */
+.type-livecode    { background-color: #6ECFF6;  margin: 3px;  padding: 5px; } /*  Pastel Cyan           */
+.type-show        { background-color: #FDC68A;  margin: 3px;  padding: 5px; } /*  Pastel Yellow Orange  */
+.type-supplement  { background-color: #F7977A;  margin: 3px;  padding: 5px; } /*  Pastel Red            */
 dt { font-weight: bold;         }
 dd { margin: 0px 0px 20px 20px; }
 dd.type-discuss, dd.type-read, dd.type-comment, dd.type-complete, dd.type-livecode, dd.type-show, dd.type-supplement { background-color: transparent; }
