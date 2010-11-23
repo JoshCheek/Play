@@ -10,6 +10,7 @@ header "Land of Lisp Itinerary" do
   define  complete:   "Tasks that need to be completed before we meet."
   define  read:       "What you need to have read before the session."
   define  supplement: "Further coding to expand on the book and make you have to use the ideas for something of your own."
+  define  comment:    "Just a remark I want to make :)"
   define  discuss:    "Topics to stimulate your brain while reading the material, we will discuss these at the session."
   define  live_code!: "Code that you will do at the session."
   define  show:       "Show and tell, let us see how you did something, maybe through the interface, maybe in code."
