@@ -1,16 +1,7 @@
 module Itinerary
-module Actions
-class  LiveCode
-  
-  include Nestable
-  
-  def initialize(to_code)
-    super
-    @to_code = to_code
+  module Actions
+    class LiveCode
+      include Nestable
+    end
   end
-  
-  def to_s
-    "LIVE CODE: #{@to_code}"
-  end
-  
-end end end
+end

@@ -1,16 +1,7 @@
 module Itinerary
-module Actions
-class  Comment
-  
-  include Nestable
-  
-  def initialize(comment)
-    super
-    @comment = comment
+  module Actions
+    class Comment
+      include Nestable
+    end
   end
-  
-  def to_s
-    "COMMENT: #{@comment}"
-  end
-  
-end end end
+end

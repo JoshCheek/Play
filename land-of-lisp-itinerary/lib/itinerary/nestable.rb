@@ -2,7 +2,12 @@ module Itinerary
   module Nestable
     
     def initialize(*args,&nested)
+      @args = args
       instance_eval(&nested) if nested
+    end
+    
+    def to_s
+      @args.join(" ")
     end
 
     def children

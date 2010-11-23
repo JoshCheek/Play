@@ -14,7 +14,7 @@ class  Read
   end
 
   def to_s
-    "READ #{@title.inspect} (#{@pages}):"
+    "#{@title.inspect} (#{@pages}):"
   end
       
   def todo
