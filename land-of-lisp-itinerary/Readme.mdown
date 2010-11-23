@@ -1,14 +1,21 @@
 Description
 ===========
 
-Some code to use to generate the itinerary for going through the book [Land of Lisp](http://landoflisp.com/).
+Some code to use to generate the itinerary for going through the book [Land of Lisp](http://landoflisp.com/). The itinerary is written in the input dir, then it is processed and kicked out in various formats to the output dir. I _really_ enjoyed this project, it was quick and fun, and since I defined the "dsl" first, was very outside-in.
 
 Usage
 =====
 
-Using Ruby ≥ 1.8.7
+Using Ruby ≥ 1.9.1
 
     rake
+
+Credits
+=======
+
+"style4" theme purchased from [theme forest](http://themeforest.net/item/stylish-404-error-page-5-color-schemes/116427).
+
+Lisp Alien image used with permission from Conrad Barski.
 
 ---------------------------------------
 
@@ -29,6 +36,12 @@ Copyright (c) 2010 Joshua Cheek
 
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
+ 
+ The theme "style4" is copyright Fusion Media, its style sheet and images must be purchased from
+ [http://themeforest.net/item/stylish-404-error-page-5-color-schemes/116427](http://themeforest.net/item/stylish-404-error-page-5-color-schemes/116427)
+ 
+ The Lisp Alien taken from the cover of _Land of Lisp_ belongs to Conrad Barski,
+ and you must get permission from him before using it.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
