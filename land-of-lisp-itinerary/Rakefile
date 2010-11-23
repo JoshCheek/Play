@@ -1,0 +1,54 @@
+dir    = File.dirname(__FILE__)  
+to_file = true
+
+task :load do
+  require "#{dir}/lib/itinerary"
+  FileList["#{dir}/input/*.rb"].each { |filename| require filename }  
+end
+
+desc 'send output to screen rather than file -- works on text and html:simple'
+task :to_screen do
+  to_file = false
+end
+
+desc 'generate the output in text format'
+task :text => :load do
+  if to_file
+    mkdir_p "#{dir}/output/text" 
+    File.open "#{dir}/output/text/itinerary.txt" , 'w' do |f|
+      f.puts Itinerary.to_text
+    end
+  else
+    puts Itinerary.to_text
+  end
+end
+
+namespace :html do
+
+  desc 'generate the output in simple html format'
+  task :simple => :load do
+    if to_file
+      mkdir_p "#{dir}/output/simple_html"
+      cp_r    "#{dir}/data/itinerary/html/simple/public" , "#{dir}/output/simple_html"
+      File.open "#{dir}/output/simple_html/itinerary.html" , 'w' do |f|
+        f.puts Itinerary.to_simple_html
+      end
+    else
+      puts Itinerary.to_simple_html
+    end
+  end
+  
+  desc 'generate the output in style4 format'
+  task :style4 => :load do
+    root_dir = "#{dir}/output/style4"
+    mkdir_p root_dir
+    cp_r    "#{dir}/data/itinerary/html/style4/public" , root_dir
+    Itinerary.to_style4_html root_dir
+  end
+
+end
+
+task :clobber do
+  rm_rf "#{dir}/output"
+end
+task :default => [ :text , 'html:simple' , 'html:style4' ]
