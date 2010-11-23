@@ -3,6 +3,8 @@ Description
 
 Some code to use to generate the itinerary for going through the book [Land of Lisp](http://landoflisp.com/). The itinerary is written in the input dir, then it is processed and kicked out in various formats to the output dir. I _really_ enjoyed this project, it was quick and fun, and since I defined the "dsl" first, was very outside-in.
 
+There are three output formats. The only one with any polish is the one I paid for the template, "style4", you can see what it looks like at [http://students.cs.wichita.edu/~jjcheek/](http://students.cs.wichita.edu/~jjcheek/).
+
 Usage
 =====
 
