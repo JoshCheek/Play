@@ -36,6 +36,23 @@ class  Style4HTML
     		<link rel="stylesheet" href="public/css/main.css" />
     	</head>
       <body>
+        
+        <!-- links to other days -->
+  			<div class="footerMenu"> <!-- yes, I know it's called footer -.^ -->
+    			<ul>
+    			  <li><a href="index.html">Home</a></li>
+    			  <% @days.each do |day| %>
+          	  <li>
+          	    <a href='<%= day_to_url day %>'>
+          	      <%= day.to_s.gsub(/\s+/,'') %>
+          	    </a>
+          	  </li>
+        	  <% end %>
+      	  </ul>
+  			</div>
+  			
+  			
+        <!-- BIG CONTENT BOX -->
     		<div class="container">
           
     			<!-- <div class="errorLabel"></div> -->
@@ -68,19 +85,6 @@ class  Style4HTML
             
           </div>
     			<div class="contentFooter"></div>
-          <!-- links to other days -->
-    			<div class="footerMenu">
-      			<ul>
-      			  <li><a href="index.html">Home</a></li>
-      			  <% @days.each do |day| %>
-            	  <li>
-            	    <a href='<%= day_to_url day %>'>
-            	      <%= day.to_s.gsub(/\s+/,'') %>
-            	    </a>
-            	  </li>
-          	  <% end %>
-        	  </ul>
-    			</div>
         </div>
       </body>
     </html>
