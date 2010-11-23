@@ -40,16 +40,16 @@ class  Style4HTML
           
     			<!-- <div class="errorLabel"></div> -->
     			
-          <!-- definition lists -->
     			<div class="contentHeader">
     			</div>
     			
+          <!-- definition lists -->
     			<div class="contentMiddle clear">
             <div class="leftContent">
               <dl>
                 <% @header.definitions.each do |key,value| %>
-                  <dt><%= key.upcase %></dt>
-                  <dd><%= value %></dd>
+                  <dt class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= key.upcase %></dt>
+                  <dd class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= value %></dd>
                 <% end %>
               </dl>
     				</div>
@@ -97,10 +97,10 @@ class  Style4HTML
     nodes.each do |node|
       type = node.class.to_s.split('::').last.downcase
       if node.children.empty?
-        result << "<li class='depth-#{depth} type-#{type}'>#{node}</li>"
+        result << "<li class='depth-#{depth.next} type-#{type}'>#{node}</li>"
       else
-        result << "<li class='depth-#{depth} type-#{type}'>#{node}"
-        format_children node.children , result , depth.next , type
+        result << "<li class='depth-#{depth.next} type-#{type}'>#{node}"
+        format_children node.children , result , depth+2 , type
         result << "</li>"
       end
     end
