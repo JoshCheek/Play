@@ -10,9 +10,9 @@ module Itinerary
         nodes.each do |node|
           type = node.class.to_s.split('::').last.downcase
           if node.children.empty?
-            result << "      #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{node}</li>"
+            result << "      #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{type.upcase}: #{node}</li>"
           else
-            result << "    #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{node}"
+            result << "    #{' '*depth*2}  <li class='depth-#{depth} type-#{type}'>#{type.upcase}: #{node}"
             format node.children, result , depth.next , type
             result << "    #{' '*depth*2}  </li>"
           end
