@@ -218,9 +218,20 @@ ul li {
 	font-size: 15px;
 	color: #8a8a8a;
 }
-dt {
-  font-weight: bold;
+
+
+ul {
+  list-style-image: none;
+  list-style-type:  none;
 }
-dd {
-  margin: 0px 0px 20px 20px;
-}
+
+.type-discuss     { background-color: #F49AC2;  margin: 3px;  padding: 5px; color:black; } /*Pastel Magenta*/
+.type-read        { background-color: #C4DF9B;  margin: 3px;  padding: 5px; color:black; } /*Pastel Pea Green*/
+.type-comment     { background-color: #8493CA;  margin: 3px;  padding: 5px; color:black; } /*Pastel Blue*/
+.type-complete    { background-color: #A187BE;  margin: 3px;  padding: 5px; color:black; } /*Pastel Violet*/
+.type-livecode    { background-color: #6ECFF6;  margin: 3px;  padding: 5px; color:black; } /*Pastel Cyan*/
+.type-show        { background-color: #FDC68A;  margin: 3px;  padding: 5px; color:black; } /*Pastel Yellow Orange*/
+.type-supplement  { background-color: #F7977A;  margin: 3px;  padding: 5px; color:black; } /*Pastel Red*/
+dt { font-weight: bold;         }
+dd { margin: 0px 0px 20px 20px; }
+dd.type-discuss, dd.type-read, dd.type-comment, dd.type-complete, dd.type-livecode, dd.type-show, dd.type-supplement { background-color: transparent; }
