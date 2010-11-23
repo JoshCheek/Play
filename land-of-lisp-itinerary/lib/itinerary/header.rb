@@ -27,7 +27,7 @@ module Itinerary
     end
     
     def to_s
-      "HEADER: #{title}"
+      title.dup
     end
     
     attr_reader :title

@@ -72,16 +72,15 @@ class  Style4HTML
     				</div>
     				
             <!-- main content goes here -->
-    				<div class="rightContent">
-              <% if day %>
-                <%= format_children day.children %>
-              <% else %>
-              <!-- for index page -->
-                <h1><%= @header %></h1>
+            <% if day %>
+      				<div class="rightContent"><%= format_children day.children %></div>
+            <% else %>
+            <!-- for index page -->
+              <div class="rightContent homePage">
+                <h1><%= @header.to_s.split.join('<br />') %></h1>
                 <p><%= @header.description %></p>
-              <% end %>
-            </div>
-            
+              </div>
+            <% end %>            
             
           </div>
     			<div class="contentFooter"></div>
