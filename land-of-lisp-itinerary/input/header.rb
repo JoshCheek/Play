@@ -2,7 +2,7 @@ header "Land of Lisp Itinerary" do
     
   describe "This winter break, instead of slothing around like... well... sloths,
             we're going to teach ourselves Lisp! It should be good fun, but we need
-            to keep track of how long we have and were we need to be, that way
+            to keep track of how long we have and where we need to be, that way
             school doesn't start up again before we finish. So, this is our
             itinerary, to help keep us focused and on track. It is, of course,
             subject to change."
