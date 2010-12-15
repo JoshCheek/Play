@@ -29,8 +29,9 @@ by 'Dec 18' do
       comment "Take a look at the book's solution, what are the differences?"
     end
     supplement "Have the program keep an average of how many guesses it took"
-    show       "your average function"
-    discuss    "your implementation"
+    show       "Put your whole program in a file and show what it looks like"
+    discuss    "Your implementation of the average function"
+    discuss    "Limits keeping your program from being better."
   end
   
   discuss "your first impression"
