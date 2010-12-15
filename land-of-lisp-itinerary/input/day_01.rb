@@ -12,7 +12,8 @@ by 'Dec 18' do
   read "Getting started with Lisp" => 15-20 do
     discuss  "Lisp dialects"
     complete "Install CLISP" do
-      comment "I installed it on my Mac with `$ sudo port install clisp`"
+      comment "I installed it on my Mac with `$ sudo port install clisp` " \
+              "it looks like there is also a package for homebrew."
       comment "Book says that `$ apt-get install clisp` should work on Debian"
       comment "If that doesn't work, check http://clisp.sourceforge.net/"
     end
