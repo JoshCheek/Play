@@ -40,11 +40,11 @@ class  Style4HTML
         <!-- links to other days -->
   			<div class="footerMenu"> <!-- yes, I know it's called footer -.^ -->
     			<ul>
-    			  <li><a href="index.html">Home</a></li>
-    			  <% @days.each do |day| %>
+    			  <li><a href="index.html" <%= day ? '' : 'class="currentDay"' %>> Home </a></li>
+    			  <% @days.each do |_day| %>
           	  <li>
-          	    <a href='<%= day_to_url day %>'>
-          	      <%= day.to_s.gsub(/\s+/,'') %>
+          	    <a href='<%= day_to_url _day %>' <%= day == _day && 'class="currentDay"' %>>
+          	      <%= _day.to_s.gsub(/\s+/,'') %>
           	    </a>
           	  </li>
         	  <% end %>
