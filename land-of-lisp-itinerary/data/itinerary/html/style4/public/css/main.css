@@ -138,6 +138,11 @@ p {
 	height: auto;
 	float: right;
 }
+.fullContent {
+	height: auto;
+	float: right;
+	padding: 10px;
+}
 .smiley {
 	width: 250px;
 	height: 305px;
@@ -241,3 +246,8 @@ ul {
 dt { font-weight: bold;         }
 dd { margin: 0px 0px 20px 20px; }
 dd.type-discuss, dd.type-read, dd.type-comment, dd.type-complete, dd.type-livecode, dd.type-show, dd.type-supplement { background-color: transparent; }
+
+.fullContent h1 {
+  color: #A187BE;
+  padding: 0 0 0 10px;
+}

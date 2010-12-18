@@ -60,23 +60,23 @@ class  Style4HTML
     			<div class="contentHeader">
     			</div>
     			
-          <!-- definition lists -->
+          <!-- main content goes here -->
     			<div class="contentMiddle clear">
-            <div class="leftContent">
-              <dl>
-                <% @header.definitions.each do |key,value| %>
-                  <dt class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= key.upcase %></dt>
-                  <dd class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= value %></dd>
-                <% end %>
-              </dl>
-    				</div>
-    				
-            <!-- main content goes here -->
-            <% if day %>
+            <% if day %>    				
+          
+              <!-- definition lists -->
+              <div class="leftContent">
+                <dl>
+                  <% @header.definitions.each do |key,value| %>
+                    <dt class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= key.upcase %></dt>
+                    <dd class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= value %></dd>
+                  <% end %>
+                </dl>
+      				</div>
       				<div class="rightContent"><%= format_children day.children %></div>
             <% else %>
             <!-- for index page -->
-              <div class="rightContent homePage">
+              <div class="fullContent homePage">
                 <h1><%= @header.to_s.split.join('<br />') %></h1>
                 <p><%= @header.description %></p>
               </div>
