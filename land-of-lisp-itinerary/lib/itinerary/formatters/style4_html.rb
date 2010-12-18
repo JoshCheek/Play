@@ -62,9 +62,10 @@ class  Style4HTML
     			
           <!-- main content goes here -->
     			<div class="contentMiddle clear">
-            <% if day %>    				
-          
-              <!-- definition lists -->
+    			  
+            <!-- content for a given day -->
+            <% if day %>
+              <!-- LEFT SIDE: definitions -->
               <div class="leftContent">
                 <dl>
                   <% @header.definitions.each do |key,value| %>
@@ -73,9 +74,11 @@ class  Style4HTML
                   <% end %>
                 </dl>
       				</div>
+              <!-- RIGHT SIDE: itinerary -->
       				<div class="rightContent"><%= format_children day.children %></div>
+      				
+      			<!-- content for index -->
             <% else %>
-            <!-- for index page -->
               <div class="fullContent homePage">
                 <h1><%= @header.to_s.split.join('<br />') %></h1>
                 <% @header.descriptions.each do |description| %>
