@@ -14,7 +14,7 @@ module Itinerary
       
       def self.format_header(header)
         [ header , 
-          "  DESCRIPTION: #{header.description}",
+          "  DESCRIPTION: #{header.descriptions.join(' ')}",
           header.definitions.map { |key,value| "  #{key.upcase}: #{value}" }
         ].flatten
       end

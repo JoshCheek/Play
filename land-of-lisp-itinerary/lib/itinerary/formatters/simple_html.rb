@@ -48,7 +48,7 @@ module Itinerary
       
       def self.format_header(header)
         [ "    <h1>#{header}</h1>",
-          "    <p>#{header.description}</p>",
+          header.descriptions.map { |description| "    <p>#{description}</p>" },
           "    <dl>",
           header.definitions.map { |key,value| "      <dt>#{key.upcase}</dt><dd>#{value}</dd>" },
           "    </dl>",

@@ -7,7 +7,8 @@ module Itinerary
     end
     
     def describe(description)
-      @description = description.split("\n").map(&:strip).join(' ')
+      @descriptions ||= []
+      @descriptions << description.split("\n").map(&:strip).join(' ')
     end
     
     def define(definition)
@@ -22,8 +23,8 @@ module Itinerary
       @definitions
     end
     
-    def description
-      @description
+    def descriptions
+      @descriptions
     end
     
     def to_s

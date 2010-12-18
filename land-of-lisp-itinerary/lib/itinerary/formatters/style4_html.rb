@@ -78,7 +78,9 @@ class  Style4HTML
             <!-- for index page -->
               <div class="fullContent homePage">
                 <h1><%= @header.to_s.split.join('<br />') %></h1>
-                <p><%= @header.description %></p>
+                <% @header.descriptions.each do |description| %>
+                  <p><%= description %></p>
+                <% end %>
               </div>
             <% end %>            
             
