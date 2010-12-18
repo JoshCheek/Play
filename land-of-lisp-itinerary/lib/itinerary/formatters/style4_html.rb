@@ -82,7 +82,14 @@ class  Style4HTML
               <div class="fullContent homePage">
                 <h1><%= @header.to_s.split.join('<br />') %></h1>
                 <% @header.descriptions.each do |description| %>
-                  <p><%= description %></p>
+                  <p><%= description.text %></p>
+                  <% if description.has_links? %>
+                    <ul>
+                      <% description.links.each do |link| %>
+                        <li><a href="<%= link.url %>"><%= link.text %></a></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>            

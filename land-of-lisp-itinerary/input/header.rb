@@ -7,6 +7,12 @@ header "Land of Lisp Itinerary" do
             itinerary, to help keep us focused and on track. It is, of course,
             subject to change."
   
+  describe "For anyone interested, here are different participants' notes." do
+    link text: "Josh's CL notes" , url: "http://students.cs.wichita.edu/~jjcheek/cl.txt"
+    link text: "Josh decides to try Emacs while learning CL. Ultimately decides it isn't worth it" , 
+         url:  "http://students.cs.wichita.edu/~jjcheek/emacs.txt"
+  end
+  
   define  complete:   "Tasks that need to be completed before we meet."
   define  read:       "What you need to have read before the session."
   define  supplement: "Further coding to expand on the book and make you have to use the ideas for something of your own."

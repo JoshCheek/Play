@@ -13,8 +13,19 @@ module Itinerary
       end
       
       def self.format_header(header)
-        [ header , 
-          "  DESCRIPTION: #{header.descriptions.join(' ')}",
+        [ header ,
+          if header.descriptions.empty?
+            Array.new
+          else
+            header.descriptions.inject('  DESCRIPTION: ') { |working,description| 
+              working << "#{description.text} "
+              if description.has_links?
+                working << description.links.map { |link| "#{link.text} (#{link.url})" }.join(', ')
+              else
+                working
+              end
+            }
+          end,
           header.definitions.map { |key,value| "  #{key.upcase}: #{value}" }
         ].flatten
       end
