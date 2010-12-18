@@ -40,11 +40,11 @@ class  Style4HTML
         <!-- links to other days -->
   			<div class="footerMenu"> <!-- yes, I know it's called footer -.^ -->
     			<ul>
-    			  <li><a href="index.html">Home</a></li>
-    			  <% @days.each do |day| %>
+    			  <li><a href="index.html" <%= day ? '' : 'class="currentDay"' %>> Home </a></li>
+    			  <% @days.each do |_day| %>
           	  <li>
-          	    <a href='<%= day_to_url day %>'>
-          	      <%= day.to_s.gsub(/\s+/,'') %>
+          	    <a href='<%= day_to_url _day %>' <%= day == _day && 'class="currentDay"' %>>
+          	      <%= _day.to_s.gsub(/\s+/,'') %>
           	    </a>
           	  </li>
         	  <% end %>
@@ -60,25 +60,37 @@ class  Style4HTML
     			<div class="contentHeader">
     			</div>
     			
-          <!-- definition lists -->
+          <!-- main content goes here -->
     			<div class="contentMiddle clear">
-            <div class="leftContent">
-              <dl>
-                <% @header.definitions.each do |key,value| %>
-                  <dt class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= key.upcase %></dt>
-                  <dd class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= value %></dd>
-                <% end %>
-              </dl>
-    				</div>
-    				
-            <!-- main content goes here -->
+    			  
+            <!-- content for a given day -->
             <% if day %>
+              <!-- LEFT SIDE: definitions -->
+              <div class="leftContent">
+                <dl>
+                  <% @header.definitions.each do |key,value| %>
+                    <dt class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= key.upcase %></dt>
+                    <dd class="type-<%= key.to_s.downcase.gsub(/[^a-z]/,'')%>"><%= value %></dd>
+                  <% end %>
+                </dl>
+      				</div>
+              <!-- RIGHT SIDE: itinerary -->
       				<div class="rightContent"><%= format_children day.children %></div>
+      				
+      			<!-- content for index -->
             <% else %>
-            <!-- for index page -->
-              <div class="rightContent homePage">
+              <div class="fullContent homePage">
                 <h1><%= @header.to_s.split.join('<br />') %></h1>
-                <p><%= @header.description %></p>
+                <% @header.descriptions.each do |description| %>
+                  <p><%= description.text %></p>
+                  <% if description.has_links? %>
+                    <ul>
+                      <% description.links.each do |link| %>
+                        <li><a href="<%= link.url %>"><%= link.text %></a></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+                <% end %>
               </div>
             <% end %>            
             
