@@ -17,7 +17,7 @@ Credits
 
 "style4" theme purchased from [theme forest](http://themeforest.net/item/stylish-404-error-page-5-color-schemes/116427).
 
-Lisp Alien image used with permission from Conrad Barski.
+Lisp Alien created by Conrad Barski, it is public domain from [http://lisperati.com/logo.html](http://lisperati.com/logo.html).
 
 ---------------------------------------
 
