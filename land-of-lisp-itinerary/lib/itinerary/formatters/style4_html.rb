@@ -31,8 +31,6 @@ class  Style4HTML
         <% else %>
           <title><%= @header.title %></title>
         <% end %>
-    		<script type="text/javascript" src="resources/js/jquery.js"></script>
-    		<script type="text/javascript" src="resources/js/main.js"></script>
     		<link rel="stylesheet" href="public/css/main.css" />
     	</head>
       <body>
