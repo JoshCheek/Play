@@ -1,4 +1,4 @@
-by 'Jan 7' do
+by 'Jan 5' do
 
   read "Dice of doom, a game written in the functional style" => 303-338 do
     comment   "hey, minimax again!"

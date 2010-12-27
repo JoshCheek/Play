@@ -1,4 +1,4 @@
-by 'Jan 3' do
+by 'Jan 1' do
 
   read 'Printing text with the format function' => 221-236 do
     discuss     "formatting output in C vs Lisp"
@@ -11,5 +11,7 @@ by 'Jan 3' do
     discuss "compare Lisp's sockets with sockets from other languages"
     discuss "why might you use a string steram?"
   end
+  
+  discuss "your new years resolutions!"
   
 end

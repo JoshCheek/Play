@@ -1,4 +1,4 @@
-by 'Jan 9' do
+by 'Jan 7' do
 
   read "The magic of Lisp macros" => 339-354 do
     discuss "how are Lisp macros different from C macros?"

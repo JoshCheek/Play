@@ -1,4 +1,4 @@
-by 'Jan 11' do
+by 'Jan 9' do
 
   read "Lazy Programming" => 375-400 do
     complete    "update the dice of doom to use the lazy version"

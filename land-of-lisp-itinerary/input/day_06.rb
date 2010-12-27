@@ -1,4 +1,4 @@
-by 'Dec 30' do
+by 'Dec 28' do
   
   read "This ain't your daddy's wumpus" => 129-152 do
     complete   "the Grand Theft Wumpus game"
@@ -14,8 +14,5 @@ by 'Dec 30' do
     discuss   "difference between Lisp hashes and hashes in other languages"
     discuss   "when would you use alists?"
   end
-  
-  supplement  "your belly with a couple of beers :D"
-  comment     "enjoy new years!"
-  
+    
 end
