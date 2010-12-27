@@ -14,8 +14,5 @@ by 'Dec 28' do
     discuss   "difference between Lisp hashes and hashes in other languages"
     discuss   "when would you use alists?"
   end
-  
-  supplement  "your belly with a couple of beers :D"
-  comment     "enjoy new years!"
-  
+    
 end

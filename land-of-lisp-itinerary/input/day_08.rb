@@ -12,4 +12,6 @@ by 'Jan 1' do
     discuss "why might you use a string steram?"
   end
   
+  discuss "your new years resolutions!"
+  
 end
