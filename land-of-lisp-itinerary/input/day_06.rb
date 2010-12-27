@@ -1,4 +1,4 @@
-by 'Dec 30' do
+by 'Dec 28' do
   
   read "This ain't your daddy's wumpus" => 129-152 do
     complete   "the Grand Theft Wumpus game"

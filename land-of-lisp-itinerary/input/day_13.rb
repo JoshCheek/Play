@@ -1,4 +1,4 @@
-by 'Jan 13' do
+by 'Jan 11' do
 
   read "Creating a graphical, web-based version of dice of doom" => 401-416 do
     complete  "web based version"

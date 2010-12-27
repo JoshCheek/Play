@@ -1,4 +1,4 @@
-by 'Jan 1' do
+by 'Dec 30' do
     
   read "Orc Battle" => 172-192 do
     complete  "the Orc Battle game"
