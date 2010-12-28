@@ -26,8 +26,11 @@
         (fresh-line)
         (translate-elements tree nil)
         (princ "}")))
-    (ext:shell (concatenate 'string "dot -Tpng "   fname " > graph1.png"))
-    (ext:shell (concatenate 'string "neato -Tpng " fname " > graph2.png"))))
+    (ext:shell (concatenate 'string "dot -Tpng "   fname " > graph.dot.png"))
+    (ext:shell (concatenate 'string "neato -Tpng " fname " > graph.neato.png"))
+    (ext:shell (concatenate 'string "fdp -Tpng "   fname " > graph.fdp.png"))
+    (ext:shell (concatenate 'string "sfdp -Tpng "  fname " > graph.sfdp.png"))
+    (ext:shell (concatenate 'string "twopi -Tpng " fname " > graph.twopi.png"))))
 
 
 (defparameter tree 
