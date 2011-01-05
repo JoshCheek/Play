@@ -1,13 +1,15 @@
 by 'Jan 5' do
 
-  read "Dice of doom, a game written in the functional style" => 303-338 do
-    comment   "hey, minimax again!"
-    complete  "Dice of doom"
-    show      "your game off"
-    discuss   "thoughts on the functional style"
-    discuss   "what makes tail-call optimization something that people talk so much about?"
-  end
-  
-  discuss "any revelations, head-scratchers, or general comments"
+    read 'Printing text with the format function' => 221-236 do
+      discuss     "formatting output in C vs Lisp"
+      supplement  "create a program that prints out pascal's triangle"
+      show        "your program"
+    end
+
+    read 'Working with streams' => 237-252 do
+      discuss "compare streams on Lisp with streams from other languages"
+      discuss "compare Lisp's sockets with sockets from other languages"
+      discuss "why might you use a string steram?"
+    end
 
 end

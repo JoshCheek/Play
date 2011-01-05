@@ -1,17 +1,14 @@
 by 'Jan 1' do
+  
+  read "Loop and format: the seedy underbelly of lisp" => 193-194
+  
+  read "Looping with the loop command" => 195-220 do
+    discuss "power of Lisp loops"
+    discuss "is it too much all in one place?"
+    discuss "thoughts on Lisp loops vs loops and iterators of other languages"
+  end
 
-  read 'Printing text with the format function' => 221-236 do
-    discuss     "formatting output in C vs Lisp"
-    supplement  "create a program that prints out pascal's triangle"
-    show        "your program"
-  end
-  
-  read 'Working with streams' => 237-252 do
-    discuss "compare streams on Lisp with streams from other languages"
-    discuss "compare Lisp's sockets with sockets from other languages"
-    discuss "why might you use a string steram?"
-  end
-  
+  discuss "your impression of Lisp now that we have gotten through half the book"  
   discuss "your new years resolutions!"
   
 end
