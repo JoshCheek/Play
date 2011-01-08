@@ -1,14 +1,29 @@
 by 'Jan 13' do
-
-  read "Lazy Programming" => 375-400 do
-    complete    "update the dice of doom to use the lazy version"
-    discuss     "can you notice a difference in the lazy vs non-lazy versions?"
-    discuss     "what advantages/disadvanatages might you have if laziness was built into your language, as with Haskell?"
-    supplement  "construct a list which contains every single fibonacci number"
-    discuss     "what are some applications where lazy programming would be very useful?"
-    discuss     "you can certainly implement these ideas in most languages, what makes the Lisp way so special?"
+  
+  read "Creating a graphical, web-based version of dice of doom" => 401-416 do
+    complete  "web based version"
+    show      "your game"
+    discuss   "any issues getting this working?"
   end
 
-  discuss "do you think AI should have been taught with Lisp? What would have been the implications?"
+  read "making dice of doom more fun" => 417-425 do
+    complete "the funner version ^_^"
+    discuss  "can you beat your ai? :P"
+  end
+
+  discuss "now that we have finished the book, how do you feel about Lisp?"
+  discuss "What situations do you think Lisp is good for? Bad for?"
+  discuss "Compare Lisp to other languages you are familiar with."
+  discuss "What was your favourite part of Lisp?"
+  discuss "What was your least favourite part of Lisp?"
+  discuss "How do you feel about parentheses?"
+  discuss "Did your text editor help? Hurt?"
+  discuss "How did you feel about the pedagogy of this book? What were its strengths and weaknesses?"
+  discuss "Would Lisp be a good language for first-time programmers?"
+  discuss "Did school expose you to the paradigms in Lisp?"
+  discuss "What were the biggest 'ah-ha' moments you had?"
+  discuss "Has this experience altered the way you think about programming?"
+  discuss "Has it altered the way you think about the language you program in most frequently?"
+  discuss "Has it altered the way you write programs?"
 
 end
