@@ -10,6 +10,7 @@ Playgrounds
 * [blackboardbot](http://github.com/JoshCheek/Play/tree/master/blackboardbot/) Script to log onto my school website, check all my forums for new posts, notify me of new posts by text message.
 * [craigslist-watcher](http://github.com/JoshCheek/Play/tree/master/craigslist-watcher/) Script to check my local craigslist free page for the given item (in my case, free computers).
 * [html-consolidated](http://github.com/JoshCheek/Play/tree/master/html-consolidated/) Use gcc's preparser to consolidate content into an html page (such as css and javascript libraries) so you can give someone a single html page with no external dependencies.
+* [irb](http://github.com/JoshCheek/Play/tree/master/irb/) Proof of concept for an interactive Ruby repl like irb.
 * [mocking-the-internet](http://github.com/JoshCheek/Play/tree/master/mocking-the-internet/) Test libraries that rely on the internet by mocking the internet, and stubbing out various URLs.
 * [physics-lab](http://github.com/JoshCheek/Play/tree/master/physics-lab/) Use the units-system gem to automate all the calculations I would have to do for my Physics lab.
 * [ruby-s](http://github.com/JoshCheek/Play/tree/master/ruby-s/) How to use ruby's -s flag for simple command line args.
