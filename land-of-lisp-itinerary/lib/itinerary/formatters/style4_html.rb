@@ -32,6 +32,7 @@ class  Style4HTML
           <title><%= @header.title %></title>
         <% end %>
     		<link rel="stylesheet" href="public/css/main.css" />
+    		<link rel="icon" type="image/png" href="favicon.png" />
     	</head>
       <body>
         

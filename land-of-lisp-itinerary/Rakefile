@@ -42,7 +42,8 @@ namespace :html do
   task :style4 => :load do
     root_dir = "#{dir}/output/style4"
     mkdir_p root_dir
-    cp_r    "#{dir}/data/itinerary/html/style4/public" , root_dir
+    cp_r    "#{dir}/data/itinerary/html/style4/public"      , root_dir
+    cp_r    "#{dir}/data/itinerary/html/style4/favicon.png" , root_dir
     Itinerary.to_style4_html root_dir
   end
 
