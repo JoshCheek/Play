@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby -s
+
+require 'erb'
+  
+def to_prompt( prompt , rest='' )
+  ERB.new(prompt).result(TOPLEVEL_BINDING).gsub('[ESCAPE]',"\e") + rest + "\e[0m"
+end
+
+$linenum = 0
+$prompt ||= '[<%= $linenum %>]>> '
+$result ||= '=> '
+
+print to_prompt($prompt)
+
+while line = gets
+  line.chomp!
+  break if line == 'exit' || line == 'quit'
+  
+  begin
+    result = eval( line , TOPLEVEL_BINDING , 'irb' , $linenum )
+    puts to_prompt( $result , result.inspect )
+  rescue Exception => e
+    puts e
+    puts
+    puts e.backtrace
+  ensure
+    $linenum += 1
+    print to_prompt($prompt)
+  end
+  
+end
