@@ -15,6 +15,10 @@ Dependencies
 
 [shoes](http://shoesrb.com/)
 
+Todo
+====
+
+Fix bug where pausing doesn't really pause, since time still moves
 
 
 ---------------------------------------
