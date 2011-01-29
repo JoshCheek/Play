@@ -8,6 +8,7 @@ Playgrounds
 
 * [activerecord-settings](http://github.com/JoshCheek/Play/tree/master/activerecord-settings/) Settings class for ActiveRecord projects
 * [blackboardbot](http://github.com/JoshCheek/Play/tree/master/blackboardbot/) Script to log onto my school website, check all my forums for new posts, notify me of new posts by text message.
+* [chem-timer](http://github.com/JoshCheek/Play/tree/master/chem-timer/) Shoes timer app to alert me when to measure results for my chem lab.
 * [craigslist-watcher](http://github.com/JoshCheek/Play/tree/master/craigslist-watcher/) Script to check my local craigslist free page for the given item (in my case, free computers).
 * [html-consolidated](http://github.com/JoshCheek/Play/tree/master/html-consolidated/) Use gcc's preparser to consolidate content into an html page (such as css and javascript libraries) so you can give someone a single html page with no external dependencies.
 * [irb](http://github.com/JoshCheek/Play/tree/master/irb/) Proof of concept for an interactive Ruby repl like irb.
