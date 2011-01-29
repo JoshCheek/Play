@@ -35,7 +35,7 @@ end
 
 
 
-Shoes.app :width => 800 , :height => 600 , :resizable => false do
+Shoes.app :width => 800 , :height => 600 , :resizable => false , :title => 'Chemistry Lab Timer' do
   
   @stopwatch = ::StopWatch.new
   
