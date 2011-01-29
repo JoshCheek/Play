@@ -3,7 +3,7 @@ Description
 
 In my Chemistry lab, we have to record values every 20 seconds. My lab partner isn't very attentive, so we frequently miss our mark. This is a timer to manage this responsibility, I enter the duration, hit start, it will alert me when we should record our data.
 
-![screenshot](http://img209.imageshack.us/img209/2602/93593675.png)
+You can see a screenshot at http://img209.imageshack.us/img209/2602/93593675.png
 
 Usage
 =====
