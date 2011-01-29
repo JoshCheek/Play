@@ -41,9 +41,7 @@ end
 
 
 
-WIDTH , HEIGHT = 800 , 400
-
-Shoes.app :width => WIDTH , :height => HEIGHT , :resizable => false , :title => 'Chemistry Lab Timer' do
+Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chemistry Lab Timer' do
   
   @stopwatch = ::StopWatch.new
   
@@ -51,30 +49,31 @@ Shoes.app :width => WIDTH , :height => HEIGHT , :resizable => false , :title => 
   flow do
     
     # LHS
-    stack :width => WIDTH/2 , :height => HEIGHT do
+    stack :width => 400 , :height => 400 do
       border black , :strokewidth => 5
       tagline 'Duration (in seconds):'        , :displace_left => 20 , :displace_top => 10
       @input = edit_line                        :displace_left => 20                        , :width => 350
       tagline 'Past Durations:'               , :displace_left => 20 , :displace_top => 10
       @recorded = edit_box                      :displace_left => 25 , :height => 265       , :width => 350
-      @recorded.text = @stopwatch.time_passed
     end
     
     # RHS
-    stack :width => WIDTH/2 , :height => HEIGHT do
+    stack :width => 400 , :height => 400 do
       border black, :strokewidth => 5
-      
-      @time = banner @stopwatch.time_passed , :align => 'center' , :size => 75 , :displace_top => 0
-      _progress = progress :width => 0.9 , :displace_left => 20
-      @progress = animate { _progress.fraction = @stopwatch.progress }
-      @progress.stop
+      displace_top = 90 
+      @time = banner @stopwatch.time_passed , :align => 'center' , :size => 75 , :displace_top => displace_top
+      _progress = progress :width => 300 , :displace_left => 50 , :displace_top => displace_top
+      @progress = animate { _progress.fraction = @stopwatch.progress }.stop
       @block = every 1 do
         @time.replace @stopwatch.time_passed
-        @recorded.text += "\n#{@stopwatch.time_passed}" if @stopwatch.on_duration?
+        if @stopwatch.on_duration?
+          @recorded.text += "#{@stopwatch.time_passed}\n" 
+          Thread.new { system 'say  measure mutha fucka -v cellos' }
+        end
       end
       
       started = false
-      button 'START / PAUSE' do
+      button 'START / PAUSE' , :width => 200 , :displace_left => 100 , :displace_top => displace_top+5 do
         if ( @input.text !~ /^\d+/ || @input.text == '0' ) && !started
           alert "You need to input a duration\n(positive number of seconds)"
           @input.focus
