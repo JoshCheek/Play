@@ -66,7 +66,10 @@ Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chem
       @progress = animate { _progress.fraction = @stopwatch.progress }.stop
       @block = every 1 do
         @time.replace @stopwatch.time_passed
-        @recorded.text += "#{@stopwatch.time_passed}\n" if @stopwatch.on_duration?
+        if @stopwatch.on_duration?
+          @recorded.text += "#{@stopwatch.time_passed}\n" 
+          Thread.new { system 'say  measure mutha fucka -v cellos' }
+        end
       end
       
       started = false
