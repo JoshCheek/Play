@@ -12,7 +12,7 @@ Usage
 Dependencies
 ============
 
-[shoew](http://shoesrb.com/)
+[shoes](http://shoesrb.com/)
 
 
 
