@@ -64,7 +64,7 @@ Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chem
       @time = banner @stopwatch.time_passed , :align => 'center' , :size => 75 , :displace_top => displace_top
       _progress = progress :width => 300 , :displace_left => 50 , :displace_top => displace_top
       @progress = animate { _progress.fraction = @stopwatch.progress }.stop
-      @block = every 1 do
+      @block = animate do
         @time.replace @stopwatch.time_passed
         if @stopwatch.on_duration? && @recorded.text[/.*\Z/] != @stopwatch.time_passed
           @recorded.text += "#{@stopwatch.time_passed}\n" 
