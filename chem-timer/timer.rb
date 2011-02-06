@@ -27,7 +27,7 @@ Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chem
         @time.replace @stopwatch.time_passed
         if @stopwatch.on_duration? && @recorded.text[/.*\Z/] != @stopwatch.time_passed
           @recorded.text += "#{@stopwatch.time_passed}\n" 
-          Thread.new { system 'say  measure mutha fucka -v cellos' }
+          Thread.new { system 'say now -v alex' }
         end
       end
       
