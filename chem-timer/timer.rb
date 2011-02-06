@@ -1,45 +1,4 @@
-class StopWatch
-  def progress
-    return 0 unless started?
-    (Time.now - initial) % duration / duration
-  end
-  def duration=(value)
-    @duration = value
-  end
-  def duration
-    (@duration || 1).to_i
-  end
-  def on_duration?
-    started? && seconds_passed % duration == 0
-  end
-  def started?
-    @initial
-  end
-  def to_s
-    "%d:%02d:%02d" % hrs_mins_secs
-  end
-  alias_method :time_passed , :to_s
-  def start
-    @initial ||= Time.now
-  end
-  def initial
-    @initial || Time.now
-  end
-  def seconds_passed
-    (Time.now - initial).to_i
-  end
-  def hrs_mins_secs
-    total_seconds = seconds_passed
-    hms = Array.new
-    3.times do
-      hms << total_seconds % 60
-      total_seconds /= 60
-    end
-    hms.reverse
-  end
-end
-
-
+require File.dirname(__FILE__) + "/stop_watch"
 
 Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chemistry Lab Timer' do
   
@@ -79,6 +38,7 @@ Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chem
           @input.focus
         elsif started
           started = false
+          @stopwatch.pause
           @block.stop
           @progress.stop
         else
