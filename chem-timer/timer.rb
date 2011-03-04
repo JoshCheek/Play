@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/stop_watch"
 
-Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chemistry Lab Timer' do
+Shoes.app :width => 800 , :height => 400 , :resizable => false , :title => 'Chemistry online extraction' do
   
   @stopwatch = ::StopWatch.new
   
