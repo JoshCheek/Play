@@ -3,6 +3,7 @@ Description
 
 Code to create a hash that lets you declare one key to reference another, used to answer [this](http://www.ruby-forum.com/topic/1592736) ruby-talk post.
 
+Adding this mostly because I really enjoyed refactoring it. Compare the before version, which requires lots of comments to explain, and has complicated nested conditionals, and the after version, where any comments would be redundant. Might turn that into an assignment for Ruby Kickstart or something. 
 
 ---------------------------------------
 
