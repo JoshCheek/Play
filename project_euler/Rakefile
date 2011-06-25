@@ -1,5 +1,10 @@
 $LOAD_PATH << "#{File.dirname __FILE__}/lib"
 
+task :console do
+  sh 'pry -I lib -r project_euler'
+end
+
+
 def time(problem_number)
   start_time  = Time.now
   solution    = yield
