@@ -3,6 +3,7 @@ require 'project_euler/core_extensions/integer'
 
 
 describe Integer do
+    
   describe '#divide?' do
     specify { 5.divide?(0).should         be }
     specify { 5.divide?(1).should_not     be }
@@ -72,4 +73,17 @@ describe Integer do
       ]
     end
   end
+  
+  describe '#factorial' do
+    specify {  0.factorial.should == 1                    }
+    specify {  1.factorial.should == 1                    }
+    specify {  2.factorial.should == 2                    }
+    specify {  3.factorial.should == 6                    }
+    specify { 20.factorial.should == 2432902008176640000  }
+  end
+  
+  describe '#choose' do
+    specify { 52.choose(5).should == 2_598_960 }
+  end
+  
 end

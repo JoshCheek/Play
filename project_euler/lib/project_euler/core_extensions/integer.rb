@@ -52,5 +52,17 @@ class Integer
     results
   end
   
+  def factorial
+    product = 1
+    1.upto self do |crnt|
+      product *= crnt
+    end
+    product
+  end
+  
+  def choose(k)
+    self.factorial / (k.factorial * (self-k).factorial)
+  end
+  
 end
 
