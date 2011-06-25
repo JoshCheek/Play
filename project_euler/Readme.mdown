@@ -1,0 +1,49 @@
+Description
+===========
+
+When I first started to program, I was really into math. I used 
+[Project Euler](http://projecteuler.net/) as problems to learn to program in.
+Since then, I've moved completely to programming, and my math skills have
+almost completely atrophied. But I thought it might be fun to go back and
+try to do some of them again (I had previously solved 140 of them), so
+here we are :)
+
+
+Usage
+=====
+
+* To time all the solutions `rake time`.
+* To time solution 1 `rake time:001`
+* To time solution 10 `rake time:010`
+* To run specs against the support library `rake spec`
+* To run specs against all the solutions `rake spec:prb`
+* To run specs against solution 1 `rake spec:prb:001`
+
+
+---------------------------------------
+
+**This code is unmaintained.** 
+
+_If you do something interesting with it, let me know so I can be happy._
+
+---------------------------------------
+
+Copyright (c) 2011 Joshua Cheek
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.

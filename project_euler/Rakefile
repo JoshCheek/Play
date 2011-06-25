@@ -1,0 +1,51 @@
+$LOAD_PATH << "#{File.dirname __FILE__}/lib"
+
+def time(problem_number)
+  start_time  = Time.now
+  solution    = yield
+  total_time  = Time.now - start_time
+  printf "Problem%03d (%05.2f seconds) solution: %p\n", problem_number, total_time, solution
+end
+
+desc 'Time each solution (to time individually, `$ rake time:001`)'
+task :time
+Dir['lib/project_euler/problems/*'].each do |problem_file|
+  problem_file.gsub!(/^lib\/|\.rb$/,'') # wtf is this bullshit?
+  problem_number = File.basename(problem_file).to_i
+  task :time => 'time:%03d' % problem_number
+  namespace :time do
+    task "%03d" % problem_number do
+      require problem_file
+      solver = ProjectEuler.const_get("Problem#{problem_number}").new
+      time(problem_number) { solver.solution }
+    end
+  end
+end
+
+
+def rspec(*files)
+  sh "rspec --color --format=documentation #{files.join ' '}"
+end
+
+task :spec => 'spec:lib'
+namespace :spec do
+  
+  desc 'Specs for the project_euler lib'
+  task(:lib) { rspec 'spec/lib/{**/*,*}_spec.rb' }
+  
+  desc 'Spec each solution (to spec individually, `$ rake spec:prb:001`)'
+  task :prb => 'spec:prb:all'
+  namespace :prb do
+    
+    task :all do
+      rspec 'spec/problems/*_spec.rb'
+    end
+    
+    Dir['spec/problems/*_spec.rb'].each do |problem_spec|
+      problem_number = File.basename(problem_spec).to_i
+      task '%003d' % problem_number do
+        rspec problem_spec
+      end
+    end
+  end
+end

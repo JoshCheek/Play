@@ -1,0 +1,41 @@
+require 'spec_helper'
+require 'project_euler/pythagorean_triples'
+
+
+describe ProjectEuler::PythagoreanTriples do
+  
+  specify '.each should yield pythagorean triples' do
+    i = 0
+    ProjectEuler::PythagoreanTriples.each do |a, b, c|
+      a.should be_an_integer
+      b.should be_an_integer
+      c.should be_an_integer
+      (a*a + b*b).should == c*c
+      i += 1
+      break if i > 20
+    end
+  end
+  
+  specify '.each should return an enumerator if no block given' do
+    ProjectEuler::PythagoreanTriples.each.with_index do |(a, b, c), index|
+      a.should be_an_integer
+      b.should be_an_integer
+      c.should be_an_integer
+      (a*a + b*b).should == c*c
+      break if index == 20
+    end
+  end
+  
+  specify 'it should have the enumerable methods' do
+    ProjectEuler::PythagoreanTriples.take 20 do |a, b, c|
+      a.should be_an_integer
+      b.should be_an_integer
+      c.should be_an_integer
+      (a*a + b*b).should == c*c
+    end
+  end
+
+  specify 'it should yield every pythagorean triple, in ascending order' do
+    pending "I don't know how what 'ascending order' means yet, and I don't know how to actually do this happen yet, either."
+  end
+end
