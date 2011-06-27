@@ -1,5 +1,6 @@
 require 'project_euler/core_extensions/integer'
 require 'project_euler/core_extensions/array'
+require 'project_euler/core_extensions/enumerable'
 require 'project_euler/fibs'
 require 'project_euler/primes'
 require 'project_euler/triangle_numbers'

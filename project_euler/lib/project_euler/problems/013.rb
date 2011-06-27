@@ -1,4 +1,5 @@
 require 'project_euler/core_extensions/integer'
+require 'project_euler/core_extensions/enumerable'
 
 module ProjectEuler
   class Problem13
@@ -103,7 +104,7 @@ module ProjectEuler
         72107838435069186155435662884062257473692284509516,
         20849603980134001723930671666823555245252804609722,
         53503534226472524250874054075591789781264330331690,
-      ].inject(:+).digits.take(10).join.to_i
+      ].sum.digits.take(10).join.to_i
     end
   end
 end

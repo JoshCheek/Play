@@ -1,4 +1,5 @@
 require 'project_euler/core_extensions/integer'
+require 'project_euler/core_extensions/enumerable'
 
 module ProjectEuler
   class Problem17
@@ -68,7 +69,7 @@ module ProjectEuler
     end
     
     def self.solve_for(n)
-      (1..n).inject(0) { |sum, i| sum + num_letters(i) }
+      (1..n).map(&method(:num_letters)).sum
     end
     
     def solution
