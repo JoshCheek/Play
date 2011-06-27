@@ -1,7 +1,13 @@
+require 'project_euler/core_extensions/enumerable'
 require 'project_euler/primes'
 
 
 class Integer
+    
+  def amicable?
+    pair = proper_divisors.sum
+    pair.proper_divisors.sum == self && pair
+  end
   
   def one?
     equal? 1

@@ -4,6 +4,16 @@ require 'project_euler/core_extensions/integer'
 
 describe Integer do
   
+  describe '#amicable?' do
+    specify { 220.amicable?.should == 284 }
+    specify { 284.amicable?.should == 220 }
+    specify { 1184.amicable?.should == 1210 }
+    specify { 1210.amicable?.should == 1184 }
+    specify { 5.should_not be_amicable }
+    specify { 200.should_not be_amicable }
+    specify { 500.should_not be_amicable }
+  end
+  
   describe '#one?' do
     specify { 1.should be_one }
     specify do
