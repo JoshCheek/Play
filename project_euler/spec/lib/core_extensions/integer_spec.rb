@@ -3,6 +3,22 @@ require 'project_euler/core_extensions/integer'
 
 
 describe Integer do
+  
+  describe '#num_digits' do
+    specify { 0.num_digits.should == 1 }
+    specify { 9.num_digits.should == 1 }
+    specify { 10.num_digits.should == 2 }
+    specify { 99.num_digits.should == 2 }
+    specify { 100.num_digits.should == 3 }
+    specify { 999.num_digits.should == 3 }
+    specify { 1000.num_digits.should == 4 }
+    specify { 9999.num_digits.should == 4 }
+    specify { 10000.num_digits.should == 5 }
+    specify { 99999.num_digits.should == 5 }
+    specify { 10000000000000000000.num_digits.should == 20 }
+    specify { 99999999999999999999.num_digits.should == 20 }
+    specify { -1.num_digits.should == 1 }
+  end
     
   describe '#divide?' do
     specify { 5.divide?(0).should         be }

@@ -3,6 +3,16 @@ require 'project_euler/primes'
 
 class Integer
   
+  def num_digits
+    return 1 if zero?
+    return abs.num_digits if self < 0
+    if self < 10000000000000
+      (Math::log10(self) + 1).to_i
+    else
+      digits.size
+    end
+  end
+  
   def divide?(num)
     num % self == 0
   end
