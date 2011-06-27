@@ -11,4 +11,8 @@ class Array
     true
   end
   
+  def sum
+    inject :+
+  end
+  
 end
