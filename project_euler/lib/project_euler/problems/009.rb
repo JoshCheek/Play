@@ -1,5 +1,4 @@
-require 'project_euler/pythagorean_triples'
-require 'project_euler/core_extensions/enumerable'
+require 'project_euler'
 
 module ProjectEuler
   class Problem9

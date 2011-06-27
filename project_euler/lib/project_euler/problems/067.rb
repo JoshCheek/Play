@@ -1,4 +1,5 @@
-require 'project_euler/problems/018'
+require 'project_euler'
+
 module ProjectEuler
   class Problem67 < Problem18
     def initialize

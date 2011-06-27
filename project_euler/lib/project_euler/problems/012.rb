@@ -1,5 +1,4 @@
-require 'project_euler/triangle_numbers'
-require 'project_euler/core_extensions/integer'
+require 'project_euler'
 
 module ProjectEuler
   class Problem12

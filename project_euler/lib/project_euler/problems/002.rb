@@ -1,4 +1,4 @@
-require 'project_euler/fibs'
+require 'project_euler'
 
 module ProjectEuler
   class Problem2

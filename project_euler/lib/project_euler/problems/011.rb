@@ -1,4 +1,4 @@
-require 'project_euler/primes'
+require 'project_euler'
 
 module ProjectEuler
   class Problem11

@@ -1,5 +1,4 @@
-require 'project_euler/primes'
-require 'project_euler/core_extensions/enumerable'
+require 'project_euler'
 
 module ProjectEuler
   class Problem10
