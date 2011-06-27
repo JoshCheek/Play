@@ -4,4 +4,8 @@ module Enumerable
     inject :+
   end
   
+  def multiplied
+    inject :*
+  end
+  
 end
