@@ -6,7 +6,8 @@ class Integer
     
   def amicable?
     pair = proper_divisors.sum
-    pair.proper_divisors.sum == self && pair
+    return nil if pair == self
+    (pair.proper_divisors.sum == self && pair != self && pair) || nil
   end
   
   def one?

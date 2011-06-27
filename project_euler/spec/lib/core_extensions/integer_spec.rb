@@ -5,13 +5,23 @@ require 'project_euler/core_extensions/integer'
 describe Integer do
   
   describe '#amicable?' do
-    specify { 220.amicable?.should == 284 }
-    specify { 284.amicable?.should == 220 }
-    specify { 1184.amicable?.should == 1210 }
-    specify { 1210.amicable?.should == 1184 }
-    specify { 5.should_not be_amicable }
-    specify { 200.should_not be_amicable }
-    specify { 500.should_not be_amicable }
+    it 'should return nil if not amicable' do
+      1.amicable?.should be_nil
+      1.should_not be_amicable
+      200.amicable?.should be_nil
+      200.should_not be_amicable
+    end
+    it 'should return the pair if amicable' do
+      220.amicable?.should == 284
+      220.should be_amicable
+    end
+    specify { 6.should_not    be_amicable }
+    specify { 284.should      be_amicable }
+    specify { 1184.should     be_amicable }
+    specify { 1210.should     be_amicable }
+    specify { 5.should_not    be_amicable }
+    specify { 200.should_not  be_amicable }
+    specify { 500.should_not  be_amicable }
   end
   
   describe '#one?' do
