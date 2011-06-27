@@ -4,6 +4,13 @@ require 'project_euler/core_extensions/integer'
 
 describe Integer do
   
+  describe '#one?' do
+    specify { 1.should be_one }
+    specify do
+      [-1, 2, 9, 10, 100, 398].each { |num| num.should_not be_one }
+    end
+  end
+  
   describe '#num_digits' do
     specify { 0.num_digits.should == 1 }
     specify { 9.num_digits.should == 1 }

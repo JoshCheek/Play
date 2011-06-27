@@ -3,6 +3,10 @@ require 'project_euler/primes'
 
 class Integer
   
+  def one?
+    equal? 1
+  end
+  
   def num_digits
     return 1 if zero?
     return abs.num_digits if self < 0
