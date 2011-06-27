@@ -1,4 +1,5 @@
 require 'project_euler'
+require 'project_euler/problems/018'
 
 module ProjectEuler
   class Problem67 < Problem18
