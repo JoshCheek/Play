@@ -51,18 +51,26 @@ class Integer
   end
   
   def factors
+    return [1] if one?
+    factors = proper_divisors
+    factors << self
+    factors
+  end
+
+  def proper_divisors
     each_combination = lambda do |ary|
       return ary if ary.empty?
       crnt = ary.shift
       without_crnt = each_combination[ary]
       with_crnt = without_crnt.dup
-      without_crnt.each { |factor| with_crnt << (factor*crnt) }
+      without_crnt.each { |divisor| with_crnt << (divisor*crnt) }
       with_crnt << crnt
       with_crnt.uniq!
       with_crnt
     end
     results = each_combination[prime_factorization].sort
-    results.unshift(1)
+    results.pop
+    results.unshift 1
     results
   end
   
