@@ -31,6 +31,12 @@ describe ProjectEuler::Primes do
     end
   end
   
+  specify 'it should consider non-positive numbers prime' do
+    ProjectEuler::Primes.should_not be_prime(0)
+    ProjectEuler::Primes.should_not be_prime(-1)
+    ProjectEuler::Primes.should_not be_prime(-2)
+  end
+  
   specify '.each_upto should yield all the primes upto and including n' do
     primes = [2, 3, 5, 7]
     ProjectEuler::Primes.each_upto(7) { |prime| prime.should == primes.shift }

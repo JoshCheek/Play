@@ -20,7 +20,7 @@ module ProjectEuler
     end
   
     def self.prime?(num)
-      return false if 1 == num
+      return false if num < 2
       return true if 2 == num || 3 == num || 5 == num
       each_upto(Math::sqrt(num).to_i.next) { |potential_factor| return false if potential_factor.divide? num }
       true
