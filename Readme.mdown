@@ -18,7 +18,7 @@ Playgrounds
 * [land-of-lisp-itinerary](http://github.com/JoshCheek/Play/tree/master/land-of-lisp-itinerary/) Itinerary for going through the book [Land of Lisp][landoflisp].
 * [mocking-the-internet](http://github.com/JoshCheek/Play/tree/master/mocking-the-internet/) Test libraries that rely on the internet by mocking the internet, and stubbing out various URLs.
 * [physics-lab](http://github.com/JoshCheek/Play/tree/master/physics-lab/) Use the units-system gem to automate all the calculations I would have to do for my Physics lab.
-* [project-euler](https://github.com/JoshCheek/Play/tree/master/project-euler) Solutions for [Project Euler](http://projecteuler.net/).
+* [project-euler](https://github.com/JoshCheek/Play/tree/master/project_euler) Solutions for [Project Euler](http://projecteuler.net/).
 * [quines](http://github.com/JoshCheek/Play/tree/master/quines/) Quines in various languages.
 * [ready-for-zero-challenges](http://github.com/JoshCheek/Play/tree/master/ready-for-zero-challenges/) My solutions to [https://www.readyforzero.com/challenge](https://www.readyforzero.com/challenge).
 * [ruby-overloadable](http://github.com/JoshCheek/Play/tree/master/ruby-overloadable/) Give Ruby method overloading
