@@ -88,7 +88,8 @@ Other than this, they scoped to wherever the container is included into. In the 
 
 
 
------ IN DEFENSE OF THIS CODE'S USE OF GOTO -----
+In defense of this code's use of goto
+-------------------------------------
 
 There seems to be a nearly religious hatred towards the use of goto, which is the glue holding the state machine together. I understand the reasons for this, as with anything that can be used, it can be abused. With the advent of control structures like if, else, while, and for, it is largely unnecessary, and using it in place of one of these control structures fractures the atomicity of logical steps, introducing convoluted logic. This seems to be the foundation of Edsger Dijkstra's criticism in his famous essay "[A Case against the GO TO Statement](http://www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF)" also known as "GO TO Statement Considered Harmful". 
 
