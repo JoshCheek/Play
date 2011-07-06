@@ -55,6 +55,7 @@ To define a state (named happiness), FILE: mood/positive/happiness.state
     } END_STATE;
 
 Required callbacks (for container named mood), FILE: mood_callbacks.h
+
     #ifndef _MOOD_H_
     #define _MOOD_H_
     void fsm_exit_mood( void* );
@@ -62,6 +63,7 @@ Required callbacks (for container named mood), FILE: mood_callbacks.h
     #endif
 
 required callbacks (for container named mood), FILE: mood_callbacks.c
+
     #include "fsm.h"
     void fsm_exit_bank_interface( void* exit_state )
     { 
