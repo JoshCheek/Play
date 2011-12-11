@@ -36,7 +36,7 @@ _If you do something interesting with it, let me know so I can be happy._
 
 ---------------------------------------
 
-Copyright (c) 2010 Joshua Cheek
+Copyright (c) 2011 Joshua Cheek
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
