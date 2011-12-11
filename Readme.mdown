@@ -24,6 +24,7 @@ Playgrounds
 * [quines](http://github.com/JoshCheek/Play/tree/master/quines/) Quines in various languages.
 * [ready-for-zero-challenges](http://github.com/JoshCheek/Play/tree/master/ready-for-zero-challenges/) My solutions to [https://www.readyforzero.com/challenge](https://www.readyforzero.com/challenge).
 * [ruby-overloadable](http://github.com/JoshCheek/Play/tree/master/ruby-overloadable/) Give Ruby method overloading
+* [ruby-golf](http://github.com/JoshCheek/Play/tree/master/ruby-golf/) Solutions for [Ruby Golf](http://rubysource.com/ruby-golf/)
 * [ruby-s](http://github.com/JoshCheek/Play/tree/master/ruby-s/) How to use ruby's -s flag for simple command line args.
 * [self-referential-hash](http://github.com/JoshCheek/Play/tree/master/self-referential-hash/) Hash where you can declare one key references another.
 * [sikulidraw](http://github.com/JoshCheek/Play/tree/master/sikulidraw/) Generate commands for Sikuli such that it draws a picture on the screen, given that the mouse is a 1px pencil.
