@@ -67,7 +67,8 @@ for each of these tasks:
 
 ### add leading blanks to right-align all text in 80-column width
 
-    ruby -pe '$_ =  "%80s\n" % $_.chomp'
+    ruby -ple '$_="%80s"%$_'
+    ruby -ple '$_=$_.rjust 80'
 
 
 ### add leading and trailing blanks to center each line in 80 columns
@@ -83,7 +84,7 @@ for each of these tasks:
 ### concatenate every 5 lines of input, using , as separator
 
     ruby -e 'ARGF.each_slice(5) { |lines| puts lines.map(&:chomp).join(",") }'
-
+    ruby -nle 's=(s||[])<<$_; puts(s.join ",")||s.clear if $.%5==0'
 
 ### print first 10 lines of file
 
@@ -92,7 +93,7 @@ for each of these tasks:
 
 ### print last 10 lines of file
 
-    ruby -ne 'puts $_ if $. > 10'
+    ruby -e 'puts ARGF.readlines[-10..-1]'
 
 
 ### print line 13 of file
