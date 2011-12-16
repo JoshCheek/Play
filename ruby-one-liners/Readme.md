@@ -41,7 +41,6 @@ for each of these tasks:
 
 ### output total number of lines that contain 'abc'
 
-    ruby -ne 'BEGIN { num = 0 }; num += 1 if $_ =~ /abc/; END { p num }'
     ruby -e 'p ARGF.readlines.grep(/abc/).size'
     ruby -ne 'w=(w||0)+1 if /abc/; END{p w}'
 
@@ -73,7 +72,7 @@ for each of these tasks:
 
 ### add leading and trailing blanks to center each line in 80 columns
 
-    ruby -lne 'printf "%80s\n", $_'
+    ruby -lpe '$_= $_.center 80' input-file
 
 
 ### reverse the text in each line
