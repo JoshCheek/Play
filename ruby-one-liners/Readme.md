@@ -17,6 +17,11 @@ for each of these tasks:
       # (also, 1.9 only)
       ruby -e 'l=-> line {puts "#$. #{line}"}; ARGV.each { |name| File.foreach name, &l}; $stdin.each &l'
 
+      # alternative version
+      # $<.pos, that is ARGF#pos, returns position (in bytes) in the current file
+      # that allows us to reset $. at the end of the first line of each file
+      ruby -ne '$. = 1 if $<.pos - $_.size == 0; puts "#$. #$_"'
+
 
 ### add line numbers for all files together
 
