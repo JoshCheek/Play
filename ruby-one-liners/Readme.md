@@ -106,7 +106,7 @@ for each of these tasks:
     ruby -ne 'puts $_ unless $_ == "\n"'
 
 
-### delete consecutive duplicate lines from file
+### delete consecutive empty lines (all but one in each group) from file
 
     ruby -ne 'puts $_ if /^[^\n]/../^$/'
 
