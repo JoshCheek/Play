@@ -11,6 +11,7 @@ Playgrounds
 * [chem-timer](http://github.com/JoshCheek/Play/tree/master/chem-timer/) Shoes timer app to alert me when to measure results for my chem lab.
 * [clf](http://github.com/JoshCheek/Play/tree/master/clf/) Command line formatter (ascii escape sequence lib).
 * [craigslist-watcher](http://github.com/JoshCheek/Play/tree/master/craigslist-watcher/) Script to check my local craigslist free page for the given item (in my case, free computers).
+* [dynamic-linking](http://github.com/JoshCheek/Play/tree/master/dynamic-linking/) Example of how to do dynamic linking with C
 * [fsm](http://github.com/JoshCheek/Play/tree/master/fsm/) Finite state machine in C through macros.
 * [html-consolidated](http://github.com/JoshCheek/Play/tree/master/html-consolidated/) Use gcc's preparser to consolidate content into an html page (such as css and javascript libraries) so you can give someone a single html page with no external dependencies.
 * [implement-map-in-lisp-in-ruby](http://github.com/JoshCheek/Play/tree/master/implement-map-in-lisp-in-ruby/) Implementing Lisp's map function (technically done in Ruby)
